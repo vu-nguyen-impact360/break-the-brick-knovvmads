@@ -3,7 +3,7 @@ var _SETTINGS = {
 	'Ad':{
 		'Mobile':{
 			'Preroll':{
-				'Enabled':true,	
+				'Enabled':false,	
 				'Duration':5,
 				'Width':250,
 				'Height':250,			
@@ -15,13 +15,13 @@ var _SETTINGS = {
 				'Height':50,				
 			},	
 			'Footer':{
-				'Enabled':true,	
+				'Enabled':false,	
 				'Duration':5,
 				'Width':320,
 				'Height':50,				
 			},	
 			'End':{
-				'Enabled':true,	
+				'Enabled':false,	
 				'Duration':5,
 				'Width':250,
 				'Height':250,				

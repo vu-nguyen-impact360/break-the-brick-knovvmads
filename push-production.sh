@@ -42,7 +42,7 @@ compile_test_game (){
 	java -jar compiler.jar \
 	--warning_level=QUIET \
 	--js=media/text/strings.js \
-	--js=settings/dev.js \
+	--js=settings/production.js \
 	--js=settings/ad/mobile/preroll/themes/light/ad.js \
 	--js=settings/ad/mobile/header/themes/light/ad.js \
 	--js=settings/ad/mobile/footer/themes/light/ad.js \
