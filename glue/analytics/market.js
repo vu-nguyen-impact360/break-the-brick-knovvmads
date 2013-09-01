@@ -34,7 +34,7 @@ var MarketJS = {};
 	var PROTOCOL = 'http://';
 	var CLOUD_DOMAIN = 'marketjs-gamecenter.appspot.com';
 	var LOCALHOST_DOMAIN = 'localhost:14095';
-	var BASE_URL = PROTOCOL + (window.location.hostname == 'localhost'? LOCALHOST_DOMAIN:CLOUD_DOMAIN);
+	var BASE_URL = PROTOCOL + (window.location.hostname == 'localhost'? CLOUD_DOMAIN:CLOUD_DOMAIN);
 	var GAME_KEY = '';
 	var AUTH_TOKEN = '';
 	function SendRequest(mode,metric_name,metric_value,callback){
