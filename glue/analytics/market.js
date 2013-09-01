@@ -9,7 +9,7 @@
 // NEW FORMAT 
 /*
 var MarketJS = {
-	protocol: 'http://',
+	protocol: 'https://',
 	cloud_domain: 'marketjs-gamecenter.appspot.com',
 	localhost_domain: 'localhost:14095',
 
@@ -31,7 +31,7 @@ var MarketJS = {};
 
 (function()
 {
-	var PROTOCOL = 'http://';
+	var PROTOCOL = 'https://';
 	var CLOUD_DOMAIN = 'marketjs-gamecenter.appspot.com';
 	var LOCALHOST_DOMAIN = 'localhost:14095';
 	var BASE_URL = PROTOCOL + (window.location.hostname == 'localhost'? CLOUD_DOMAIN:CLOUD_DOMAIN);
