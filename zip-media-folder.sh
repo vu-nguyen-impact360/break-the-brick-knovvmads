@@ -5,7 +5,7 @@
 CURRENT_DIRECTORY=${PWD##*/}
 
 # Remove current zip file
-rm media.zip
+rm ../$CURRENT_DIRECTORY/_factory/localization/$1/media.zip
 
 # Making dir
 mkdir ../$CURRENT_DIRECTORY/_factory/localization/$1
