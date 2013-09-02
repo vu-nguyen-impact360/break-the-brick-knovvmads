@@ -35,7 +35,7 @@ $params = array('files'    => $path_to_project,
 				'literal' => '%DEFAULT%',
 				'literal_duplicates' => '%DEFAULT%',
 				'member_enum' => '%DEFAULT%',
-				'domain_lock' => '*.amazonaws.com;localhost',
+				'domain_lock' => '*.marketjs.com;localhost',
 				'mode' => 'html5', // protects your HTML5 and Web Gaming applications by targeting the new HTML5 features
 				);
 
