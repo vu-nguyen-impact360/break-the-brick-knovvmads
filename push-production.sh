@@ -27,14 +27,35 @@ bake (){
 
 secure (){
 	echo ""
-	echo "Securing by obscuring ..."
+	echo "Preparing domainlock ..."
+	echo ""		
+	rm domainlock.js
+	python prep_domainlock.py
+
 	echo ""
+	echo "Preparing factory domainlock ..."
+	echo ""	
+	prep_factory_domainlock
 	
-	php secure.php game.js
+	echo ""
+	echo "Securing by obscuring ..."
+	echo ""	
+	php secure_production.php domainlock.js
+
+	echo ""
+	echo "Injecting domainlock ..."
+	echo ""
+	python inject_domainlock.py
 	
 	echo ""
 	echo "Securing Done!"
 	echo ""	
+	
+	rm domainlock.js	
+}
+
+prep_factory_domainlock(){
+	cp domainlock.js _factory/domainlock/raw.js
 }
 
 compile_test_game (){

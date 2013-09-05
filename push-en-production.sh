@@ -1,2 +1,2 @@
 #! /bin/bash
-sh push-production.sh -b -l en -a 'production'
+sh push-production.sh -b -l en -a

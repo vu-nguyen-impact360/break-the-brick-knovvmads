@@ -1,32 +1,4 @@
-ig.module( 
-	'game.main' 
-)
-.requires(
-	'impact.game',
-	'impact.debug.debug',	
-	
-	// PLUGINS
-	'plugins.splash-loader',
-	'plugins.tween',
-	'plugins.url-parameters',
-	'plugins.jukebox',
-	//'plugins.facebook',
-	'plugins.director',
-	//'plugins.video-manager',
-	'plugins.impact-storage',
-	
-	// ENTITIES
-	'game.entities.pointer',
-	'game.entities.pointer-selector',
-		
-	'game.entities.select',
-	
-	// LEVELS
-	'game.levels.test-desktop',
-	'game.levels.test-mobile'	
-)
-.defines(function(){	
-	this.START_OBFUSCATION;
+
 	MyGame = ig.Game.extend({	
 		init: function() {						
 			// SERVER-SIDE INTEGRATIONS	
@@ -387,5 +359,4 @@ ig.module(
 	}
 	
 	sizeHandler();
-	this.END_OBFUSCATION;
-});
+	
