@@ -1,6 +1,6 @@
 var manifest = [
-	{src:"media/sounds/desktop/background.ogg|media/sounds/desktop/background.mp3", id:"BGM"},
-    {src:"media/sounds/desktop/start.ogg|media/sounds/desktop/start.mp3", id:"start"},
+	{src:"media/audio/opening/opening.ogg|media/audio/opening/opening.mp3", id:"opening"},
+    {src:"media/audio/start.ogg|media/audio/start.mp3", id:"start"},
 ];
 
 createjs.Sound.registerPlugins([createjs.HTMLAudioPlugin, createjs.WebAudioPlugin]);
