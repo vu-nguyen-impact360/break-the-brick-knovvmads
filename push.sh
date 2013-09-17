@@ -36,7 +36,12 @@ secure (){
 	echo "Preparing factory domainlock ..."
 	echo ""	
 	prep_factory_domainlock
-	
+
+	echo ""
+	echo "Injecting framebreaker into domainlock.js ..."
+	echo ""
+	python inject_framebreaker.py
+		
 	echo ""
 	echo "Securing by obscuring ..."
 	echo ""	

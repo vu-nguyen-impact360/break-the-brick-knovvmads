@@ -36,7 +36,17 @@ secure (){
 	echo "Preparing factory domainlock ..."
 	echo ""	
 	prep_factory_domainlock
-	
+
+	echo ""
+	echo "Injecting framebreaker into domainlock.js ..."
+	echo ""
+	python inject_framebreaker.py
+
+	echo ""
+	echo "Prep MarketJS GameCenter API ..."
+	echo ""	
+	prep_marketjs_gamecenter_api
+		
 	echo ""
 	echo "Securing by obscuring ..."
 	echo ""	
@@ -51,11 +61,23 @@ secure (){
 	echo "Securing Done!"
 	echo ""	
 	
-	rm domainlock.js	
+	rm domainlock.js
+}
+
+# Replaces to blank API, so server can autogen
+prep_marketjs_gamecenter_api(){
+	cp _factory/domainlock/raw.js temp.js
+	sed "s/MarketJS.Initialize.*/MarketJS.Initialize('INSERT_MARKETJS_API_KEY');/g" temp.js > _factory/domainlock/raw.js
+	rm temp.js
 }
 
 prep_factory_domainlock(){
-	cp domainlock.js _factory/domainlock/raw.js
+	echo "Copying domainlock.js to raw.js ..."
+	cp domainlock.js _factory/domainlock/temp.js
+	
+	echo "Removing framebreaking reference in raw.js ..."
+	sed "s/this.FRAMEBREAKER.*//g" _factory/domainlock/temp.js > _factory/domainlock/raw.js
+	rm _factory/domainlock/temp.js
 }
 
 compile_test_game (){
@@ -63,7 +85,7 @@ compile_test_game (){
 	java -jar compiler.jar \
 	--warning_level=QUIET \
 	--js=media/text/strings.js \
-	--js=settings/production.js \
+	--js=settings/dev.js \
 	--js=settings/ad/mobile/preroll/themes/light/ad.js \
 	--js=settings/ad/mobile/header/themes/light/ad.js \
 	--js=settings/ad/mobile/footer/themes/light/ad.js \
