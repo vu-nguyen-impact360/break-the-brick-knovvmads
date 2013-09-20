@@ -124,7 +124,7 @@ var MarketJS = {};
 			payload['data'] = JSON.stringify(data);
 			payload['game_key'] = GAME_KEY;
 			
-			$.post(BASE_URL + '/write', payload,
+			$.post(BASE_URL + '/metric/write', payload,
 				function(response) {
 					console.log("Response: " + response);
 			});				
