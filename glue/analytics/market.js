@@ -6,27 +6,6 @@
  -----------------------------------------------------------------------
 */
 
-// NEW FORMAT 
-/*
-var MarketJS = {
-	protocol: 'https://',
-	cloud_domain: 'marketjs-gamecenter.appspot.com',
-	localhost_domain: 'localhost:14095',
-
-	game_key:'',
-	auth_token:'',
-		
-	Initialize:function(){	
-		this.base_url = this.protocol + (window.location.hostname == 'localhost'? this.localhost_domain:this.cloud_domain);
-				
-	},
-	
-	SendRequest:function(){
-		
-	},
-};
-*/
-
 var MarketJS = {};
 
 (function()
@@ -37,35 +16,30 @@ var MarketJS = {};
 	var BASE_URL = PROTOCOL + (window.location.hostname == 'localhost'? CLOUD_DOMAIN:CLOUD_DOMAIN);
 	var GAME_KEY = '';
 	var AUTH_TOKEN = '';
-	function SendRequest(mode,metric_name,metric_value,callback){
+	
+	function SendGetRequest(mode,metric_name,metric_value,callback){
 		var request = window.XDomainRequest ? new XDomainRequest() : new XMLHttpRequest(); 
 				
 		var url;
 		switch(mode){
-			/* SINGLE COUNTER */
 			case 'single-metric-write':
 				url = BASE_URL + '/metric/write/' + GAME_KEY + '/' + metric_name + '/' + metric_value;
 				break;
 			case 'single-metric-read':
 				url = BASE_URL + '/metric/read/single/' + GAME_KEY + '/' + metric_name;
-				break;
-			
-			/* MULTI COUNTER */	
+				break;	
 			case 'multi-metric-write':
-				// handled by POST
+				url = BASE_URL + '/metric/write';
 				break;
 			case 'multi-metric-read':
 				url = BASE_URL + '/metric/read/multi/' + GAME_KEY + '?' + metric_name;
-				break;
-			
-			/* LEADERBOARD */					
+				break;			
 			case 'leaderboard-read':
 				url = BASE_URL + '/leaderboard/read/' + GAME_KEY + '?' + metric_name;
 				break;
 			case 'leaderboard-write':
 				// handled by POST
-				break;
-												
+				break;												
 			default:
 				console.log('no mode found');
 		}
@@ -89,16 +63,66 @@ var MarketJS = {};
 
 		if(window.XDomainRequest)
 		{
-			request.open("GET", url);
+			request.open("GET", url);		
 		}
 		else
 		{
-			request.open("GET", url, true);
-		}
-							
-		request.send();	
+			request.open("GET", url,true);
+		}	
+		
+		request.send();		
 	}
-	
+
+	/*
+	function SendPostRequest(mode,params){
+		var request = window.XDomainRequest ? new XDomainRequest() : new XMLHttpRequest(); 
+				
+		var url;
+		switch(mode){
+			case 'multi-metric-write':
+				url = BASE_URL + '/metric/write';
+				break;
+			case 'leaderboard-write':
+				// handled by POST
+				break;												
+			default:
+				console.log('no mode found');
+		}
+
+		request.onerror = function()
+		{
+			console.log(request.responseText);
+		};
+
+		request.onload = function()
+		{
+			var response = JSON.parse(request.responseText);
+			
+			if(callback){
+				console.log('passing to callback ...')
+				callback(response);
+			}else{
+				console.log(response);
+			}			
+		};
+
+		if(window.XDomainRequest)
+		{
+			request.open("POST", url);		
+		}
+		else
+		{
+			request.open("POST", url,true);
+		}	
+		
+		params = encodeURIComponent(JSON.stringify(params));
+		
+		console.log('params:',params)
+		
+		request.send(params);		
+	}
+	*/
+		
 	MarketJS.Initialize = function(k){		
 		GAME_KEY = k;		
 		MarketJS.SingleMetric.Write('InitializeGame','1');
@@ -110,11 +134,11 @@ var MarketJS = {};
 	MarketJS.SingleMetric = {
 		// uses a key-value pair		
 		Write: function(metric_name,metric_value){
-			SendRequest('single-metric-write',metric_name,metric_value);
+			SendGetRequest('single-metric-write',metric_name,metric_value);
 		},
 		
 		Read: function(metric_name){
-			SendRequest('single-metric-read',metric_name);
+			SendGetRequest('single-metric-read',metric_name);
 		},
 	}
 		
@@ -124,10 +148,14 @@ var MarketJS = {};
 			payload['data'] = JSON.stringify(data);
 			payload['game_key'] = GAME_KEY;
 			
+			// Not working
+			//SendPostRequest('multi-metric-write',payload);
+			
+			// Working
 			$.post(BASE_URL + '/metric/write', payload,
 				function(response) {
 					console.log("Response: " + response);
-			});				
+			});							
 		},
 				
 		Read: function(metric_names,callback,rank_ascending){
@@ -143,7 +171,7 @@ var MarketJS = {};
 			query+=rank_ascending?'&rank_ascending=yes':'&rank_ascending=no';
 			
 			console.log(query);					
-			SendRequest('multi-metric-read',query,0,callback);
+			SendGetRequest('multi-metric-read',query,0,callback);
 		}
 	} 
 
@@ -159,7 +187,7 @@ var MarketJS = {};
 	}	
 
 	/**************************
-		LOGIN 
+		LOGIN - NOT READY
 	**************************/			
 	MarketJS.Login = {
 		Basic: function(obj,callback){
@@ -219,7 +247,7 @@ var MarketJS = {};
 			query+="&metric_count=";
 			query+=metric_count;
 			
-			SendRequest('leaderboard-read',query,0,callback);
+			SendGetRequest('leaderboard-read',query,0,callback);
 		}					
 	}
 
