@@ -5,7 +5,7 @@ var _SETTINGS = {
 			'Preroll':{
 				'Enabled':false,	
 				'Duration':5,
-				'Width':250,
+				'Width':300,
 				'Height':250,			
 			},
 			'Header':{

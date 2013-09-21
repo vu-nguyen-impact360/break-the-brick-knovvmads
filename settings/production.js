@@ -3,9 +3,9 @@ var _SETTINGS = {
 	'Ad':{
 		'Mobile':{
 			'Preroll':{
-				'Enabled':false,	
+				'Enabled':true,	
 				'Duration':5,
-				'Width':250,
+				'Width':300,
 				'Height':250,			
 			},
 			'Header':{
