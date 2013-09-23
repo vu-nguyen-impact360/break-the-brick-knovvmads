@@ -83,20 +83,13 @@ function adjustLayers(width,height){
 	
 	$('#ajaxbar').width(w);
 	$('#ajaxbar').height(h);
-		
+
+	
 	//console.log(destW,destH);
 }
 
 function sizeHandler() {	
-    window.scrollTo(0, 1);
 
-	// check if in desktop landing page mode settings
-	if(typeof(DESKTOP_LANDING_PAGE)!='undefined'){
-		if(DESKTOP_LANDING_PAGE){
-			return
-		}
-	}
-	
     if (!$('#game')) {
         return;
     }
@@ -115,6 +108,8 @@ function sizeHandler() {
 	}	
 	
 	adjustLayers();
+	
+	window.scrollTo(0,1);
 };
 
 // MOBILE PATH: orientationHandler -> sizeHandler -> adjustLayers
@@ -156,9 +151,6 @@ window.addEventListener('orientationchange', function (evt) {
 	orientationHandler();
 	sizeHandler();
 }, false);
-
-// DOES THIS WORK?
-// window.onfocus = function() { if(ig.ua.mobile){ig.game.resumeGame();} }
 
 document.ontouchmove = function(e){ 
     window.scrollTo(0, 1);
