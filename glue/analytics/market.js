@@ -18,110 +18,64 @@ var MarketJS = {};
 	var AUTH_TOKEN = '';
 	
 	function SendGetRequest(mode,metric_name,metric_value,callback){
-		var request = window.XDomainRequest ? new XDomainRequest() : new XMLHttpRequest(); 
+		try{
+			var request = window.XDomainRequest ? new XDomainRequest() : new XMLHttpRequest(); 
 				
-		var url;
-		switch(mode){
-			case 'single-metric-write':
-				url = BASE_URL + '/metric/write/' + GAME_KEY + '/' + metric_name + '/' + metric_value;
-				break;
-			case 'single-metric-read':
-				url = BASE_URL + '/metric/read/single/' + GAME_KEY + '/' + metric_name;
-				break;	
-			case 'multi-metric-write':
-				url = BASE_URL + '/metric/write';
-				break;
-			case 'multi-metric-read':
-				url = BASE_URL + '/metric/read/multi/' + GAME_KEY + '?' + metric_name;
-				break;			
-			case 'leaderboard-read':
-				url = BASE_URL + '/leaderboard/read/' + GAME_KEY + '?' + metric_name;
-				break;
-			case 'leaderboard-write':
-				// handled by POST
-				break;												
-			default:
-				console.log('no mode found');
-		}
+			var url;
+			switch(mode){
+				case 'single-metric-write':
+					url = BASE_URL + '/metric/write/' + GAME_KEY + '/' + metric_name + '/' + metric_value;
+					break;
+				case 'single-metric-read':
+					url = BASE_URL + '/metric/read/single/' + GAME_KEY + '/' + metric_name;
+					break;	
+				case 'multi-metric-write':
+					url = BASE_URL + '/metric/write';
+					break;
+				case 'multi-metric-read':
+					url = BASE_URL + '/metric/read/multi/' + GAME_KEY + '?' + metric_name;
+					break;			
+				case 'leaderboard-read':
+					url = BASE_URL + '/leaderboard/read/' + GAME_KEY + '?' + metric_name;
+					break;
+				case 'leaderboard-write':
+					// handled by POST
+					break;												
+				default:
+					console.log('no mode found');
+			}
 
-		request.onerror = function()
-		{
-			console.log(request.responseText);
-		};
+			request.onerror = function()
+			{
+				console.log(request.responseText);
+			};
 
-		request.onload = function()
-		{
-			var response = JSON.parse(request.responseText);
+			request.onload = function()
+			{
+				var response = JSON.parse(request.responseText);
 			
-			if(callback){
-				console.log('passing to callback ...')
-				callback(response);
-			}else{
-				console.log(response);
-			}			
-		};
+				if(callback){
+					console.log('passing to callback ...')
+					callback(response);
+				}else{
+					console.log(response);
+				}			
+			};
 
-		if(window.XDomainRequest)
-		{
-			request.open("GET", url);		
-		}
-		else
-		{
-			request.open("GET", url,true);
+			if(window.XDomainRequest)
+			{
+				request.open("GET", url);		
+			}
+			else
+			{
+				request.open("GET", url,true);
+			}	
+		
+			request.send();				
+		}catch(err){
+			console.log(err);
 		}	
-		
-		request.send();		
 	}
-
-	/*
-	function SendPostRequest(mode,params){
-		var request = window.XDomainRequest ? new XDomainRequest() : new XMLHttpRequest(); 
-				
-		var url;
-		switch(mode){
-			case 'multi-metric-write':
-				url = BASE_URL + '/metric/write';
-				break;
-			case 'leaderboard-write':
-				// handled by POST
-				break;												
-			default:
-				console.log('no mode found');
-		}
-
-		request.onerror = function()
-		{
-			console.log(request.responseText);
-		};
-
-		request.onload = function()
-		{
-			var response = JSON.parse(request.responseText);
-			
-			if(callback){
-				console.log('passing to callback ...')
-				callback(response);
-			}else{
-				console.log(response);
-			}			
-		};
-
-		if(window.XDomainRequest)
-		{
-			request.open("POST", url);		
-		}
-		else
-		{
-			request.open("POST", url,true);
-		}	
-		
-		params = encodeURIComponent(JSON.stringify(params));
-		
-		console.log('params:',params)
-		
-		request.send(params);		
-	}
-	*/
 		
 	MarketJS.Initialize = function(k){		
 		GAME_KEY = k;		
@@ -152,10 +106,15 @@ var MarketJS = {};
 			//SendPostRequest('multi-metric-write',payload);
 			
 			// Working
-			$.post(BASE_URL + '/metric/write', payload,
-				function(response) {
-					console.log("Response: " + response);
-			});							
+			try{
+				$.post(BASE_URL + '/metric/write', payload,
+					function(response) {
+						console.log("Response: " + response);
+				});					
+			}catch(err){
+				console.log(err);
+			}
+						
 		},
 				
 		Read: function(metric_names,callback,rank_ascending){
@@ -182,7 +141,13 @@ var MarketJS = {};
 		Leaderboard: function(metric_name,player_key,callback){
 			var getString = BASE_URL + '/read/player/game/leaderboard/' + metric_name + '/' + player_key + '/' + GAME_KEY;
 			var payload = {}
-			$.get(getString, payload, callback, 'json');	
+
+			try{
+				$.get(getString, payload, callback, 'json');	
+			}catch(err){
+				console.log(err);
+			}
+			
 		}		
 	}	
 
@@ -201,18 +166,12 @@ var MarketJS = {};
 			}
 			
 			console.log('login payload:',payload);
-			
-			$.post(BASE_URL + '/login', payload,callback)			
-			
-			//console.log('callback: ',callback)
-			/*		
-			$.post(BASE_URL + '/login', payload,function(response){
-				response = JSON.parse(response);
-				AUTH_TOKEN = response['auth-token'];
-				
-				switch(response);	
-			});	
-			*/							
+
+			try{
+				$.post(BASE_URL + '/login', payload,callback)							
+			}catch(err){
+				console.log(err);
+			}						
 		}		
 	}
 	
@@ -228,11 +187,16 @@ var MarketJS = {};
 			payload['metric_name'] = metric_name;
 			payload['metric_value'] = metric_value;
 			payload['cumulative'] = cumulative?'true':'false';
-			
-			$.post(BASE_URL + '/write/leaderboard', payload,
-				function(response) {
-					console.log("Response: " + response);
-			});				
+
+			try{
+				$.post(BASE_URL + '/write/leaderboard', payload,
+					function(response) {
+						console.log("Response: " + response);
+				});					
+			}catch(err){
+				console.log(err);
+			}
+									
 		},
 
 		Read:function(metric_name,rank_ascending,metric_count,callback){
