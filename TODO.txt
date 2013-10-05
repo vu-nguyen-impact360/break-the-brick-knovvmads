@@ -1,1 +1,1 @@
-make en,de commands from PUSH code
+fix the sound for branding mobile
