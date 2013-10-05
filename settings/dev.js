@@ -34,7 +34,12 @@ var _SETTINGS = {
 	},
 		
 	'Branding':{
-		'Enabled':false,		
+		'Splash':{
+			'Enabled':true,
+		},
+		'MainMenu':{
+			'Enabled':false,
+		}
 	},	
 	
 	'Gamecenter':{
