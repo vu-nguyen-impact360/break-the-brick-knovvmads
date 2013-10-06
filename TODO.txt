@@ -1,1 +1,5 @@
-fix the sound for branding mobile
+how to integrate branding logo
+main.js (remove finalize code, use latest from template)
+handler.js (remove dynamic entity portion)
+
+plugin-branding splash

@@ -41,7 +41,7 @@ var _SETTINGS = {
 			'Enabled':true,
 			'Link':'http://google.com',
 			'Width':100,
-			'Height':50,
+			'Height':31,
 		}
 	},	
 	
