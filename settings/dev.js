@@ -35,10 +35,13 @@ var _SETTINGS = {
 		
 	'Branding':{
 		'Splash':{
-			'Enabled':false,
+			'Enabled':true,
 		},
-		'MainMenu':{
-			'Enabled':false,
+		'Logo':{
+			'Enabled':true,
+			'Link':'http://google.com',
+			'Width':100,
+			'Height':50,
 		}
 	},	
 	
