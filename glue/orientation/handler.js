@@ -41,24 +41,6 @@ var advancedDivsToResize = {
 }
 
 function adjustLayers(width,height){
-	// FOR DYNAMIC CLICKABLE ENTITIES (SCALABLE LAYER POSITIONED ON TOP OF IN-GAME ENTITY)
-	/*
-	for(key in dynamicClickableEntityDivs){
-		// RESIZE ACCORDINGLY
-		$('#'+key).width(dynamicClickableEntityDivs[key]['width']);
-		$('#'+key).height(dynamicClickableEntityDivs[key]['height']);		
-
-		// PEG LAYER TO ENTITY
-		var reference = {
-			x:(w / 2) - (destW / 2),
-			y:(h / 2) - (destH / 2),
-		} 
-		
-		// MAGIC
-		$('#'+key).css('left',reference.x + dynamicClickableEntityDivs[key]['entity_pos_x']*multiplier);
-		$('#'+key).css('top',reference.y + dynamicClickableEntityDivs[key]['entity_pos_y']*multiplier);				
-	}
-	*/
 		
 	// CORE DIVS
 	for(i=0;i<coreDivsToResize.length;i++){
