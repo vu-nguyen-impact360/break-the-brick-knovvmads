@@ -56,8 +56,7 @@ function adjustLayers(width,height){
 		
 		// MAGIC
 		$('#'+key).css('left',reference.x + dynamicClickableEntityDivs[key]['entity_pos_x']*multiplier);
-		$('#'+key).css('top',reference.y + dynamicClickableEntityDivs[key]['entity_pos_y']*multiplier);
-				
+		$('#'+key).css('top',reference.y + dynamicClickableEntityDivs[key]['entity_pos_y']*multiplier);				
 	}
 	*/
 		
