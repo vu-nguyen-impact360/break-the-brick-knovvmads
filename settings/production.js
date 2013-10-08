@@ -37,8 +37,11 @@ var _SETTINGS = {
 		'Splash':{
 			'Enabled':false,
 		},
-		'MainMenu':{
+		'Logo':{
 			'Enabled':false,
+			'Link':'http://google.com',
+			'Width':280,
+			'Height':34,
 		}
 	},	
 	

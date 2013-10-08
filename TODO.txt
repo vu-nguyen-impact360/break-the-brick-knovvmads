@@ -1,5 +1,19 @@
 how to integrate branding logo
-main.js (remove finalize code, use latest from template)
-handler.js (remove dynamic entity portion)
+-main.js 
+  -- (remove finalize code, use latest from template)
+  -- startGame(): if branding enabled, do something (line 118)
+-handler.js (remove dynamic entity portion)
+-plugin-branding splash (and the branding folder)
+-dev.js, production.js
+-director.js, in nextLevel() -> add the hide overlay part. Check if any surprises on director.js
+- weltmeister.html
+<script src="settings/dev.js" type="text/javascript" charset="utf-8"></script>
 
-plugin-branding splash
+- lib/entities/branding-logo.js
+- main.js (create link to branding-logo, to plugins.branding.splash)
+
+- static sound in createjs (media folder audio/play/)
+- sound-manager -> static
+- injectMobileLink -> use 'static'
+- opening.js -> init() or some other function must have sound for mobile`
+- copy branding folder
