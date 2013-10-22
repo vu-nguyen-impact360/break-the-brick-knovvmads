@@ -12,6 +12,7 @@ how to integrate branding logo
 <script src="settings/dev.js" type="text/javascript" charset="utf-8"></script>
 
 - lib/entities/branding-logo.js
+- lib/entities/branding-logo-placeholder.js
 - main.js (create link to branding-logo, to plugins.branding.splash)
 
 - static sound in createjs (media folder audio/play/)

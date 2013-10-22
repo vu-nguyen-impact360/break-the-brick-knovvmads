@@ -40,8 +40,8 @@ var _SETTINGS = {
 		'Logo':{
 			'Enabled':true,
 			'Link':'http://google.com',
-			'Width':280,
-			'Height':34,
+			'Width':166,
+			'Height':61,
 		}
 	},	
 	
