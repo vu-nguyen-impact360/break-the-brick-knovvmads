@@ -10,7 +10,12 @@ var _STRINGS = {
 				"ReadyIn":"The game is ready in ",
 				"Loading":"Your game is loading...",
 				"Close":"Close",
-			},					
+			},
+			"End":{
+				"ReadyIn":"Advertisement ends in ",
+				"Loading":"Please wait ...",
+				"Close":"Close",
+			},								
 		},
 	},
 	

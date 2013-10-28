@@ -3,28 +3,60 @@ var _SETTINGS = {
 	'Ad':{
 		'Mobile':{
 			'Preroll':{
-				'Enabled':false,	
+				'Enabled':true,	
 				'Duration':5,
 				'Width':300,
-				'Height':250,			
+				'Height':250,
+				'Rotation':{
+					'Enabled':true,
+					'Weight':{
+						'MobileAdInGamePreroll':40,
+						'MobileAdInGamePreroll2':40,
+						'MobileAdInGamePreroll3':20,
+					},
+				},			
 			},
 			'Header':{
 				'Enabled':false,	
 				'Duration':5,
 				'Width':320,
-				'Height':50,				
+				'Height':50,	
+				'Rotation':{
+					'Enabled':true,
+					'Weight':{
+						'MobileAdInGameHeader':40,
+						'MobileAdInGameHeader2':40,
+						'MobileAdInGameHeader3':20,
+					},
+				},							
 			},	
 			'Footer':{
 				'Enabled':false,	
 				'Duration':5,
 				'Width':320,
-				'Height':50,				
+				'Height':50,
+				'Rotation':{
+					'Enabled':true,
+					'Weight':{
+						'MobileAdInGameFooter':40,
+						'MobileAdInGameFooter2':40,
+						'MobileAdInGameFooter3':20,
+					},
+				},								
 			},	
 			'End':{
 				'Enabled':false,	
 				'Duration':1,
-				'Width':250,
-				'Height':250,				
+				'Width':300,
+				'Height':250,	
+				'Rotation':{
+					'Enabled':true,
+					'Weight':{
+						'MobileAdInGameEnd':40,
+						'MobileAdInGameEnd2':40,
+						'MobileAdInGameEnd3':20,
+					},
+				},							
 			},								
 		},		
 	},
@@ -40,8 +72,8 @@ var _SETTINGS = {
 		'Logo':{
 			'Enabled':true,
 			'Link':'http://google.com',
-			'Width':166,
-			'Height':61,
+			'Width':280,
+			'Height':34,
 		}
 	},	
 	

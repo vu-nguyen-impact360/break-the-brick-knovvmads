@@ -37,7 +37,27 @@ var advancedDivsToResize = {
 	'MobileAdInGameEnd':{
 		'box-width':_SETTINGS['Ad']['Mobile']['End']['Width']+2,
 		'box-height':_SETTINGS['Ad']['Mobile']['End']['Height']+20,
-	},			
+	},	
+	
+	// Second
+	'MobileAdInGamePreroll2':{
+		'box-width':_SETTINGS['Ad']['Mobile']['Preroll']['Width']+2,
+		'box-height':_SETTINGS['Ad']['Mobile']['Preroll']['Height']+20,
+	},	
+	'MobileAdInGameEnd2':{
+		'box-width':_SETTINGS['Ad']['Mobile']['End']['Width']+2,
+		'box-height':_SETTINGS['Ad']['Mobile']['End']['Height']+20,
+	},	
+
+	// Third
+	'MobileAdInGamePreroll3':{
+		'box-width':_SETTINGS['Ad']['Mobile']['Preroll']['Width']+2,
+		'box-height':_SETTINGS['Ad']['Mobile']['Preroll']['Height']+20,
+	},	
+	'MobileAdInGameEnd3':{
+		'box-width':_SETTINGS['Ad']['Mobile']['End']['Width']+2,
+		'box-height':_SETTINGS['Ad']['Mobile']['End']['Height']+20,
+	},	
 }
 
 function adjustLayers(width,height){
@@ -58,10 +78,14 @@ function adjustLayers(width,height){
 	
 	// ADVANCED OVERLAYS AND BOXES
 	for(key in advancedDivsToResize){
-		$('#'+key).width(w);
-		$('#'+key).height(h);			
-		$('#'+key+'-Box').css('left',(w-advancedDivsToResize[key]['box-width'])/2);
-		$('#'+key+'-Box').css('top',(h-advancedDivsToResize[key]['box-height'])/2);				
+		try{
+			$('#'+key).width(w);
+			$('#'+key).height(h);			
+			$('#'+key+'-Box').css('left',(w-advancedDivsToResize[key]['box-width'])/2);
+			$('#'+key+'-Box').css('top',(h-advancedDivsToResize[key]['box-height'])/2);				
+		}catch(err){
+			console.log(err);
+		}			
 	}
 	
 	$('#ajaxbar').width(w);

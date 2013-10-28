@@ -8,16 +8,45 @@ var MobileAdInGamePreroll = {
 	loading:_STRINGS['Ad']['Mobile']['Preroll']['Loading'],
 	close:_STRINGS['Ad']['Mobile']['Preroll']['Close']+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
 		
-	Initialize:function(){	
-		this.overlay = $('#MobileAdInGamePreroll');
-		this.box = $('#MobileAdInGamePreroll-Box');
+	Initialize:function(){
+		if(_SETTINGS['Ad']['Mobile']['Preroll']['Rotation']['Enabled']){
+			// Get Rotator
+			var rotationSettings = _SETTINGS['Ad']['Mobile']['Preroll']['Rotation']['Weight'];
+
+			// Sort into tiers
+			var tier1 = rotationSettings['MobileAdInGamePreroll']; // 40
+			var tier2 = tier1 + rotationSettings['MobileAdInGamePreroll2']; // 80
+			var tier3 = tier2 + rotationSettings['MobileAdInGamePreroll3']; // 100
+
+			// Sort into 
+			var randomSeed = Math.floor(Math.random()*100);
+			console.log('seed: ',randomSeed);
+
+			if(randomSeed <= tier1){
+				this.selectedOverlayName = 'MobileAdInGamePreroll'
+			}else if(randomSeed <= tier2){
+				this.selectedOverlayName = 'MobileAdInGamePreroll2'
+			}else if(randomSeed <= tier3){
+				this.selectedOverlayName = 'MobileAdInGamePreroll3'
+			}	
+			console.log('Ad rotating preroll enabled')		
+		}else{
+			this.selectedOverlayName = 'MobileAdInGamePreroll'
+			console.log('Ad rotating preroll disabled')
+		}
+		
+		console.log('selected:',this.selectedOverlayName);
+		
+		// Selected	
+		this.overlay = $('#' + this.selectedOverlayName);
+		this.box = $('#' + this.selectedOverlayName + '-Box');
 		this.game = $('#game');
 		
 		this.boxContents = {
-			footer:$('#MobileAdInGamePreroll-Box-Footer'),			
-			header:$('#MobileAdInGamePreroll-Box-Header'),
-			close:$('#MobileAdInGamePreroll-Box-Close'),
-			body:$('#MobileAdInGamePreroll-Box-Body'), // Contains the ad			
+			footer:$('#' + this.selectedOverlayName + '-Box-Footer'),			
+			header:$('#' + this.selectedOverlayName + '-Box-Header'),
+			close:$('#' + this.selectedOverlayName + '-Box-Close'),
+			body:$('#' + this.selectedOverlayName + '-Box-Body'), // Contains the ad			
 		};
 		
 		// Centralize
@@ -48,12 +77,8 @@ var MobileAdInGamePreroll = {
 	},
 	
 	Close:function(){
+		this.boxContents.close.hide();
 		this.overlay.hide();
 	}
 
 };
-
-
-
-
-
