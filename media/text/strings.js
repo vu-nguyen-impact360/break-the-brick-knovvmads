@@ -34,14 +34,6 @@ var _STRINGS = {
 		"Time":"Time",
 	},
 
-	"FacebookPostToFeed":{
-		"Title":"Some title",
-		"Caption":"Some Caption",
-		"Description":"Some description",
-		"Link":"http://google.com",
-		"Picture":"media/splash/desktop/cover.jpg",
-	},
-
 	"Results":{
 		"Title":"High score",
 	},	
