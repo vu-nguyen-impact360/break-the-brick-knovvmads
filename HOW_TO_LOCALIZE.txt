@@ -3,3 +3,5 @@ strings.js
 check splash-loader.js
 create push-LANG-fresh.sh, push-LANG.sh
 create backup of current language in _factory/backup
+
+add game language in MarketJS platform (metadata)
