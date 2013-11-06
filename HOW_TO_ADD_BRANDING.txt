@@ -1,3 +1,6 @@
+IF GAME DOESN'T HAVE THIS, HOW TO IMPLEMENT IN OUR PROJECT?
+Based on impactjs-marketjs-platform repository as source:
+
 how to integrate branding logo
 -main.js 
   -- (remove finalize code, use latest from template)
