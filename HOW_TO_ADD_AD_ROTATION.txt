@@ -3,10 +3,8 @@ Based on impactjs-marketjs-platform repository as source:
 
 dev.html must have latest code (Ad rotation DIVs)
 dev.js must have ad rotation script
-copy paste entire settings folder
+copy paste entire settings folder (contains JS,CSS,etc)
 
 handler.js 
 - must have all the DIVs in advancedDivsToResize
 - try/catch in "for(key in advancedDivsToResize){" loop
-
-main.js
