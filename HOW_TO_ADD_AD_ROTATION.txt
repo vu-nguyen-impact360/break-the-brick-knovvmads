@@ -1,0 +1,10 @@
+IF GAME DOESN'T HAVE THIS, HOW TO IMPLEMENT?
+
+dev.html must have latest code (Ad rotation DIVs)
+dev.js must have ad rotation script
+
+handler.js 
+- must have all the DIVs in advancedDivsToResize
+- try/catch in "for(key in advancedDivsToResize){" loop
+
+main.js

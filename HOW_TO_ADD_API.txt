@@ -2,3 +2,5 @@ dev.js
 production.js
 DO NOT INSERT API CODE INTO main.js, because it'll get scrambled and mistakes happen
 Insert into other parts of the game (eg: brain.js)
+
+When in doubt, use Emoji Quiz as sample
