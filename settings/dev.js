@@ -29,7 +29,7 @@ var _SETTINGS = {
 				'Width':300,
 				'Height':250,
 				'Rotation':{
-					'Enabled':true,
+					'Enabled':false,
 					'Weight':{
 						'MobileAdInGamePreroll':40,
 						'MobileAdInGamePreroll2':40,
@@ -43,7 +43,7 @@ var _SETTINGS = {
 				'Width':320,
 				'Height':50,	
 				'Rotation':{
-					'Enabled':true,
+					'Enabled':false,
 					'Weight':{
 						'MobileAdInGameHeader':40,
 						'MobileAdInGameHeader2':40,
@@ -57,7 +57,7 @@ var _SETTINGS = {
 				'Width':320,
 				'Height':50,
 				'Rotation':{
-					'Enabled':true,
+					'Enabled':false,
 					'Weight':{
 						'MobileAdInGameFooter':40,
 						'MobileAdInGameFooter2':40,
@@ -71,7 +71,7 @@ var _SETTINGS = {
 				'Width':300,
 				'Height':250,	
 				'Rotation':{
-					'Enabled':true,
+					'Enabled':false,
 					'Weight':{
 						'MobileAdInGameEnd':40,
 						'MobileAdInGameEnd2':40,
