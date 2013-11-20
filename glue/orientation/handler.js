@@ -122,29 +122,19 @@ function sizeHandler() {
 // MOBILE PATH: orientationHandler -> sizeHandler -> adjustLayers
 function orientationHandler(){
 	console.log('changing orientation ...');
-					
-	var orientation = window.orientation;
-	switch(orientation){
-		case 0:
-			//alert('portrait detected');
-			$('#orientate').hide();
-			$('#game').show();
-			break;
-		case 90:
-			//alert('landscape detected');
+	
+	if(ig.ua.mobile){
+		if(window.innerHeight < window.innerWidth){
+			//var orientation = false ;	//landscape
 			$('#orientate').show();
 			$('#game').hide();
-			break;
-		case -90:
-			//alert('landscape detected');
-			$('#orientate').show();
-			$('#game').hide();
-			break;
-		case 180:
-			//alert('portrait detected');
+			//alert(window.innerHeight +"/"+ window.innerWidth + "hide");
+		}else{
+			//var orientation = true ;	//portrait
 			$('#orientate').hide();
 			$('#game').show();
-			break;
+			//alert(window.innerHeight +"/"+ window.innerWidth + "show");
+		}		
 	}
 
 	sizeHandler();
@@ -152,11 +142,10 @@ function orientationHandler(){
 
 // EVENT LISTENERS
 window.addEventListener('resize', function (evt) {
-	sizeHandler();
+	orientationHandler();
 }, false);
 window.addEventListener('orientationchange', function (evt) {
 	orientationHandler();
-	sizeHandler();
 }, false);
 
 document.ontouchmove = function(e){ 
