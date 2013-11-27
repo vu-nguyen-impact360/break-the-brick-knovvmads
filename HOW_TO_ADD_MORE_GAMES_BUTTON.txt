@@ -1,0 +1,17 @@
+make sure artwork for "More Games" is there
+copy to appropriate folder
+dev.js, production
+	'MoreGames':{
+		'Enabled':true,
+		'Link':'http://yahoo.com',
+	},
+	
+copy button-more-games from template
+add button-more-games.js, definie width,height
+
+main.js -> define link to button-more-games
+
+	// MORE GAMES
+	'game.entities.button-more-games',
+
+use weltmeister to add "more games" button

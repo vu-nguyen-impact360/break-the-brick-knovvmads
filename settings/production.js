@@ -97,7 +97,12 @@ var _SETTINGS = {
 			'Height':34,
 		}
 	},	
-	
+
+	'MoreGames':{
+		'Enabled':true,
+		'Link':'http://yahoo.com',
+	},
+		
 	'Gamecenter':{
 		'Enabled':true,
 	},
