@@ -7,7 +7,7 @@ dev.js, production
 	},
 	
 copy button-more-games from template
-add button-more-games.js, definie width,height
+add button-more-games.js, definie width,height, and size! (x,y)
 
 main.js -> define link to button-more-games
 
