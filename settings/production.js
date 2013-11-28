@@ -100,7 +100,7 @@ var _SETTINGS = {
 
 	'MoreGames':{
 		'Enabled':true,
-		'Link':'http://yahoo.com',
+		'Link':'http://www.marketjs.com/game/links/mobile',
 	},
 		
 	'Gamecenter':{
