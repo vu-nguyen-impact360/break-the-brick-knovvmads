@@ -15,3 +15,4 @@ main.js -> define link to button-more-games
 	'game.entities.button-more-games',
 
 use weltmeister to add "more games" button
+REMEMBER TO USE DIV_LAYER_NAME as entity settings in weltmeister
