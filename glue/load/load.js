@@ -31,10 +31,10 @@ loadScriptsSynchronously([
 	'settings/dev.js',
 
 	// ADS		
-	'settings/ad/mobile/header/themes/light/ad.js',
-	'settings/ad/mobile/preroll/themes/light/ad.js',
-	'settings/ad/mobile/footer/themes/light/ad.js',
-	'settings/ad/mobile/end/themes/light/ad.js',
+	//'settings/ad/mobile/header/themes/light/ad.js',
+	//'settings/ad/mobile/preroll/themes/light/ad.js',
+	//'settings/ad/mobile/footer/themes/light/ad.js',
+	//'settings/ad/mobile/end/themes/light/ad.js',
 				
 	// IE >=9 
 	'glue/ie/ie.js',		
