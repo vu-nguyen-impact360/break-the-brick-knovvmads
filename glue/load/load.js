@@ -23,36 +23,36 @@ function loadScriptsSynchronously(arr) {
 // if not on server, run compiled version
 loadScriptsSynchronously([
 	// _STRINGS
-	//'media/text/strings.js',
+	'media/text/strings.js',
 
 	// SETTINGS
-	//'settings/dev.js',
+	'settings/dev.js',
 
 	// ADS		
-	//'settings/ad/mobile/header/themes/light/ad.js',
-	//'settings/ad/mobile/preroll/themes/light/ad.js',
-	//'settings/ad/mobile/footer/themes/light/ad.js',
-	//'settings/ad/mobile/end/themes/light/ad.js',
+	'settings/ad/mobile/header/themes/light/ad.js',
+	'settings/ad/mobile/preroll/themes/light/ad.js',
+	'settings/ad/mobile/footer/themes/light/ad.js',
+	'settings/ad/mobile/end/themes/light/ad.js',
 				
 	// IE >=9 
-	//'glue/ie/ie.js',		
+	'glue/ie/ie.js',
 
 	// Jukebox
-	//'glue/jukebox/Player.js',
-	//'glue/jukebox/Manager.js',
+	'glue/jukebox/Player.js',
+	'glue/jukebox/Manager.js',
 
 	// GA
-	//'glue/analytics/market.js', // requires internet connection
+	'glue/analytics/market.js', // requires internet connection
 
 	// ORIENTATION
-	//'glue/orientation/handler.js',
+	'glue/orientation/handler.js',
 
 	// SoundJS
-	//'glue/soundjs/EventDispatcher.js',
-	//'glue/soundjs/Sound.js',
-	//'glue/soundjs/WebAudioPlugin.js',
-	//'glue/soundjs/HTMLAudioPlugin.js',		
-	//'glue/soundjs/sound-manager.js',
+	'glue/soundjs/EventDispatcher.js',
+	'glue/soundjs/Sound.js',
+	'glue/soundjs/WebAudioPlugin.js',
+	'glue/soundjs/HTMLAudioPlugin.js',		
+	'glue/soundjs/sound-manager.js',
 
 	// Game
 	'lib/impact/impact.js',
