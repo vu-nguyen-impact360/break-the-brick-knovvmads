@@ -12,8 +12,10 @@ function loadScriptsSynchronously(arr) {
     var loadFunctions = [];
     for (i = arr.length - 1; i >= 0; --i) {
         if (i == arr.length - 1) {
+			console.log(i)
             loadFunctions[i] = (function (idx) { return function () { jQuery.getScript(arr[idx], function () { }); }; })(i);
         } else {
+			console.log(i)
             loadFunctions[i] = (function (idx) { return function () { jQuery.getScript(arr[idx], loadFunctions[idx + 1]); }; })(i);
         }
     }
