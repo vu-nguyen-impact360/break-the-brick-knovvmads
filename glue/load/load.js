@@ -37,7 +37,7 @@ loadScriptsSynchronously([
 	//'settings/ad/mobile/end/themes/light/ad.js',
 				
 	// IE >=9 
-	'glue/ie/ie.js',		
+	//'glue/ie/ie.js',		
 
 	// Jukebox
 	//'glue/jukebox/Player.js',
