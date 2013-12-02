@@ -40,8 +40,8 @@ loadScriptsSynchronously([
 	'glue/ie/ie.js',		
 
 	// Jukebox
-	'glue/jukebox/Player.js',
-	'glue/jukebox/Manager.js',
+	//'glue/jukebox/Player.js',
+	//'glue/jukebox/Manager.js',
 
 	// GA
 	'glue/analytics/market.js', // requires internet connection
