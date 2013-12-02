@@ -50,11 +50,11 @@ loadScriptsSynchronously([
 	'glue/orientation/handler.js',
 
 	// SoundJS
-	'glue/soundjs/EventDispatcher.js',
+	//'glue/soundjs/EventDispatcher.js',
 	//'glue/soundjs/Sound.js',
-	'glue/soundjs/WebAudioPlugin.js',
-	'glue/soundjs/HTMLAudioPlugin.js',		
-	'glue/soundjs/sound-manager.js',
+	//'glue/soundjs/WebAudioPlugin.js',
+	//'glue/soundjs/HTMLAudioPlugin.js',		
+	//'glue/soundjs/sound-manager.js',
 
 	// Game
 	'lib/impact/impact.js',
