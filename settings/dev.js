@@ -104,6 +104,6 @@ var _SETTINGS = {
 	},
 		
 	'Gamecenter':{
-		'Enabled':true,
+		'Enabled':false,
 	},
 };
