@@ -51,7 +51,7 @@ loadScriptsSynchronously([
 
 	// SoundJS
 	'glue/soundjs/EventDispatcher.js',
-	'glue/soundjs/Sound.js',
+	//'glue/soundjs/Sound.js',
 	'glue/soundjs/WebAudioPlugin.js',
 	'glue/soundjs/HTMLAudioPlugin.js',		
 	'glue/soundjs/sound-manager.js',
