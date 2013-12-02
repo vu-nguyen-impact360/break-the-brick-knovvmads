@@ -25,7 +25,7 @@ function loadScriptsSynchronously(arr) {
 // if not on server, run compiled version
 loadScriptsSynchronously([
 	// _STRINGS
-	'media/text/strings.js',
+	//'media/text/strings.js',
 
 	// SETTINGS
 	//'settings/dev.js',
