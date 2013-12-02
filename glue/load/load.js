@@ -28,7 +28,7 @@ loadScriptsSynchronously([
 	'media/text/strings.js',
 
 	// SETTINGS
-	'settings/dev.js',
+	//'settings/dev.js',
 
 	// ADS		
 	//'settings/ad/mobile/header/themes/light/ad.js',
