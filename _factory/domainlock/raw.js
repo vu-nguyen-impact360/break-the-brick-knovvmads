@@ -24,8 +24,8 @@
 		},
 		
 		injectMobileLink:function(){
-			// Inject link
-			$('#play').attr('onclick','ig.game.setupJukebox();ig.game.pressPlay();createjs.Sound.play(\'start\');')			
+			// Inject link createjs.Sound.play(\'start\');
+			$('#play').attr('onclick','ig.game.setupJukebox();ig.game.pressPlay();')			
 		},
 		
 		removeLoadingWheel:function(){

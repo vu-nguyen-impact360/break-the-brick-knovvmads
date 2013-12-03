@@ -88,10 +88,10 @@ var _SETTINGS = {
 		
 	'Branding':{
 		'Splash':{
-			'Enabled':false,
+			'Enabled':true,
 		},
 		'Logo':{
-			'Enabled':false,
+			'Enabled':true,
 			'Link':'http://google.com',
 			'Width':280,
 			'Height':34,
