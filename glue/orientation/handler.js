@@ -172,3 +172,6 @@ window.addEventListener('orientationchange', function (evt) {
 document.ontouchmove = function(e){ 
     window.scrollTo(0, 1);
 }
+
+// ON FOCUS (FIX SPLASH FREEZE ANDROID)
+window.onfocus = function() { if(ig.ua.mobile){ig.game.resumeGame();} }
