@@ -169,6 +169,25 @@ window.addEventListener('orientationchange', function (evt) {
 	orientationHandler();
 }, false);
 
+if(getQueryVariable('webview')==='true'){
+	$(window).focus(function() {
+		if(ig.ua.mobile) ig.game.resumeGame();
+		if(ig.game) ig.game.pressMute(); 
+	});
+	
+	$(window).blur(function() {
+		if(ig.game)ig.game.pressMute();
+	});
+}else{
+	window.onfocus = function() {
+		if(ig.ua.mobile) ig.game.resumeGame();
+		if(ig.game) ig.game.pressMute(); 
+	};
+	window.onblur = function() {
+		if(ig.game)ig.game.pressMute();
+	};
+}
+
 document.ontouchmove = function(e){ 
     window.scrollTo(0, 1);
 }
