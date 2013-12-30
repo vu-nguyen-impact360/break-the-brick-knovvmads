@@ -114,6 +114,9 @@ function sizeHandler() {
 	    destH = desktopHeight * multiplier;
 	}	
 	
+	widthRatio = window.innerWidth / mobileWidth ;
+	heightRatio = window.innerHeight / mobileHeight ;
+	
 	adjustLayers();
 	
 	window.scrollTo(0,1);
@@ -180,7 +183,7 @@ if(getQueryVariable('webview')==='true'){
 	});
 }else{
 	window.onfocus = function() {
-		if(ig.ua.mobile) ig.game.resumeGame();
+		if(ig.ua.mobile) ig.game.resumeGame(); // ON FOCUS (FIX SPLASH FREEZE ANDROID)
 		if(ig.game) ig.game.pressMute(); 
 	};
 	window.onblur = function() {
@@ -191,6 +194,3 @@ if(getQueryVariable('webview')==='true'){
 document.ontouchmove = function(e){ 
     window.scrollTo(0, 1);
 }
-
-// ON FOCUS (FIX SPLASH FREEZE ANDROID)
-window.onfocus = function() { if(ig.ua.mobile){ig.game.resumeGame();} }
