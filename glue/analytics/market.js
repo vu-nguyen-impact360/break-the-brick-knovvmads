@@ -10,7 +10,12 @@ var MarketJS = {};
 
 (function()
 {
-	var PROTOCOL = 'https://';
+	if(ie>9){ //IE 10 or above is not taking HTTPS
+		var PROTOCOL = 'http://';
+	}else{
+		var PROTOCOL = 'https://';
+	}
+	
 	var CLOUD_DOMAIN = 'marketjs-gamecenter.appspot.com';
 	var LOCALHOST_DOMAIN = 'localhost:14095';
 	var BASE_URL = PROTOCOL + (window.location.hostname == 'localhost'? CLOUD_DOMAIN:CLOUD_DOMAIN);
