@@ -126,8 +126,13 @@ function sizeHandler() {
 function orientationHandler(){
 	console.log('changing orientation ...');
 	
-	if(ig.ua.mobile){
-		if(window.innerHeight < window.innerWidth){
+	if(ig.ua.mobile){		
+		if(portraitMode){
+			var test = window.innerHeight < window.innerWidth;
+		}else{
+			var test = window.innerHeight > window.innerWidth;
+		}
+		if(test){
 			//var orientation = false ;	//landscape
 			$('#orientate').show();
 			$('#game').hide();
