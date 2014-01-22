@@ -13,8 +13,8 @@ var mobileLandscapeWidth = 640;
 var mobileLandscapeHeight = 480;
 
 // ADJUSTED LATER, BASED ON ORIENTATION
-var mobileWidth=mobilePortraitWidth;
-var mobileHeight=mobilePortraitHeight;
+var mobileWidth=portraitMode?mobilePortraitWidth:mobileLandscapeWidth;
+var mobileHeight=portraitMode?mobilePortraitHeight:mobileLandscapeHeight;
 
 var desktopWidth=640,desktopHeight=480;
 var w,h,multiplier,destW,destH;
