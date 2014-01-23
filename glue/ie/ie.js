@@ -44,38 +44,38 @@ function getQueryVariable(variable) {
     }
 }
 		
-var nohtml5_message = {
-	'en':'This game is best experienced with HTML5 capable browsers. We recommend downloading <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>, or <a href="http://www.mozilla.org" target="_blank">Mozilla Firefox</a>',
-	'hk':'此程式只能支援 HTML5 的瀏覽器上運行，如未能開始遊戲，請按此下載 <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>, or <a href="http://www.mozilla.org" target="_blank">Mozilla Firefox</a>',
-	'tw':'此程式只能支援 HTML5 的瀏覽器上運行，如未能開始遊戲，請按此下載 <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>, or <a href="http://www.mozilla.org" target="_blank">Mozilla Firefox</a>',			
-}
-
-if(ie<9){
-	var message;
-	var lang = getQueryVariable('lang');
-	if(lang){
-		switch(lang.toLowerCase()){
-			case 'en':
-				message = nohtml5_message['en'];
-				break;
-			case 'hk':
-				message = nohtml5_message['hk'];
-				break;
-			case 'tw':
-				message = nohtml5_message['tw'];
-				break;
-			default:
-				message = nohtml5_message['en'];
-		}				
-	}else{
-		message = nohtml5_message['en'];
-	}
-
-	// INJECT
-	document.getElementById('nohtml5-text').innerHTML = message;
-
-	// SHOW
-	document.getElementById('nohtml5').style.visibility="visible";		
-	
-}
+//var nohtml5_message = {
+//	'en':'This game is best experienced with HTML5 capable browsers. We recommend downloading <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>, or <a href="http://www.mozilla.org" target="_blank">Mozilla Firefox</a>',
+//	'hk':'此程式只能支援 HTML5 的瀏覽器上運行，如未能開始遊戲，請按此下載 <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>, or <a href="http://www.mozilla.org" target="_blank">Mozilla Firefox</a>',
+//	'tw':'此程式只能支援 HTML5 的瀏覽器上運行，如未能開始遊戲，請按此下載 <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>, or <a href="http://www.mozilla.org" target="_blank">Mozilla Firefox</a>',			
+//}
+//
+//if(ie<9){
+//	var message;
+//	var lang = getQueryVariable('lang');
+//	if(lang){
+//		switch(lang.toLowerCase()){
+//			case 'en':
+//				message = nohtml5_message['en'];
+//				break;
+//			case 'hk':
+//				message = nohtml5_message['hk'];
+//				break;
+//			case 'tw':
+//				message = nohtml5_message['tw'];
+//				break;
+//			default:
+//				message = nohtml5_message['en'];
+//		}				
+//	}else{
+//		message = nohtml5_message['en'];
+//	}
+//
+//	// INJECT
+//	document.getElementById('nohtml5-text').innerHTML = message;
+//
+//	// SHOW
+//	document.getElementById('nohtml5').style.visibility="visible";		
+//	
+//}
 
