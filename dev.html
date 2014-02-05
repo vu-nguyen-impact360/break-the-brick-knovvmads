@@ -19,7 +19,17 @@
 <!-- AnalyticsCode -->	
 
 <!-- APICode -->
-
+	<script type="text/javascript" src="http://cdn.gameplayer.io/api/js/game.js"></script>
+	
+	<script type="text/javascript">
+		GameAPI.loadAPI(function(API) {
+		    // The API is ready for use.
+		    // It can be accessed by using the `API` variable
+		    // For example: API.Branding.getLogo();
+			console.log('GameAPI loaded ...');
+			
+		});	
+	</script>
 </head>
 
 <body onload="setTimeout(window.scrollTo(0,1),1);">
