@@ -4,6 +4,8 @@
  carry their own licensing terms and are referenced where applicable. 
  -----------------------------------------------------------------------
 */
+
+// Ben: It's better experience to build games in portrait modes, for now
 var portraitMode=true;
 
 // FIXED MOBILE DIMENSIONS
