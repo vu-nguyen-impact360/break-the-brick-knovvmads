@@ -4,7 +4,7 @@
  carry their own licensing terms and are referenced where applicable. 
  -----------------------------------------------------------------------
 */
-var portraitMode;
+var portraitMode=true;
 
 // FIXED MOBILE DIMENSIONS
 var mobilePortraitWidth = 480;
