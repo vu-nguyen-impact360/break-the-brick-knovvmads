@@ -179,22 +179,23 @@ window.addEventListener('orientationchange', function (evt) {
 	orientationHandler();
 }, false);
 
+// COPIED FROM BELLY RUB KITTY GAME
 if(getQueryVariable('webview')==='true'){
 	$(window).focus(function() {
 		if(ig.ua.mobile) ig.game.resumeGame();
-		if(ig.game) ig.game.pressMute(); 
+		if(ig.game) ig.game.unmute(true); 
 	});
 	
 	$(window).blur(function() {
-		if(ig.game)ig.game.pressMute();
+		if(ig.game)ig.game.mute(true);
 	});
 }else{
 	window.onfocus = function() {
-		if(ig.ua.mobile) ig.game.resumeGame(); // ON FOCUS (FIX SPLASH FREEZE ANDROID)
-		if(ig.game) ig.game.pressMute(); 
+		if(ig.ua.mobile) ig.game.resumeGame();
+		if(ig.game) ig.game.unmute(true); 
 	};
 	window.onblur = function() {
-		if(ig.game)ig.game.pressMute();
+		if(ig.game)ig.game.mute(true);
 	};
 }
 
