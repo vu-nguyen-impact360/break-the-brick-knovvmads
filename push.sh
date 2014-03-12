@@ -138,11 +138,7 @@ prep_production (){
 	--js=glue/jukebox/Player.js \
 	--js=glue/jukebox/Manager.js \
 	--js=glue/analytics/market.js \
-	--js=glue/soundjs/EventDispatcher.js \
-	--js=glue/soundjs/Sound.js \
-	--js=glue/soundjs/WebAudioPlugin.js \
-	--js=glue/soundjs/HTMLAudioPlugin.js \
-	--js=glue/soundjs/sound-manager.js \
+	--js=glue/howler/howler.js \
 	--js=game.min.js \
 	--js_output_file=_factory/game/game.js \
 	--language_in=ECMASCRIPT5
