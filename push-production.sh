@@ -25,6 +25,13 @@ bake (){
 	echo ""
 }
 
+promo (){
+	echo ""
+	echo "Preparing promo ..."
+	sh promo.sh
+	echo ""
+}
+
 secure (){
 	echo ""
 	echo "Preparing domainlock ..."
@@ -205,6 +212,7 @@ while getopts "l:bnahs:" opt; do
 		prep_production $3
 		compile_test_game
 		secure
+		promo
       ;;
     n)
 		deploy --new $3
