@@ -93,6 +93,7 @@ var _SETTINGS = {
 		'Logo':{
 			'Enabled':true,
 			'Link':'http://google.com',
+			'LinkEnabled':true, // Makes the logo clickable or not (ie activate/deactivate link)
 			'Width':166,
 			'Height':61,
 		}
