@@ -85,7 +85,20 @@ var _SETTINGS = {
 	'Language':{
 		'Default':'en',		
 	},
-		
+
+	'DeveloperBranding':{ // MarketJS Branding
+		'Splash':{
+			'Enabled':false,
+		},
+		'Logo':{
+			'Enabled':true,
+			'Link':'http://google.com',
+			'LinkEnabled':true,
+			'Width':166,
+			'Height':61,
+		}
+	},
+			
 	'Branding':{
 		'Splash':{
 			'Enabled':false,
