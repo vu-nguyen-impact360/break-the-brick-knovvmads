@@ -88,7 +88,7 @@ var _SETTINGS = {
 
 	'DeveloperBranding':{ // MarketJS Branding
 		'Splash':{
-			'Enabled':false,
+			'Enabled':true,
 		},
 		'Logo':{
 			'Enabled':true,
