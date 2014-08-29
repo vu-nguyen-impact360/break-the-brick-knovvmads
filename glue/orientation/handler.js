@@ -180,6 +180,7 @@ window.addEventListener('orientationchange', function (evt) {
 }, false);
 
 // COPIED FROM BELLY RUB KITTY GAME
+/** Added into impact/sound-handler.js
 if(getQueryVariable('webview')==='true'){
 	$(window).focus(function() {
 		if(ig.ua.mobile) ig.game.resumeGame();
@@ -198,6 +199,7 @@ if(getQueryVariable('webview')==='true'){
 		if(ig.game)ig.game.mute(true);
 	};
 }
+*/
 
 document.ontouchmove = function(e){ 
     window.scrollTo(0, 1);
