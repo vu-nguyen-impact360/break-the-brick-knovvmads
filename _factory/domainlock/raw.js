@@ -1,9 +1,6 @@
 
 	MyGame = ig.Game.extend({	
-		init: function() {						
-			// SERVER-SIDE INTEGRATIONS	
-			this.setupMarketJSAPI();
-
+		init: function() {
 			// BASICS
 			this.setupControls();
 			this.setupDesktopMusic();
@@ -52,16 +49,6 @@
 		
 		setupDesktopMusic:function(){
 			//ig.music.add('media/sounds/desktop/background.*', 'background');			
-		},
-		
-		setupMarketJSAPI:function(){
-			// PLESE OBTAIN GAME KEY FROM PROJECT MANAGER
-			
-			// TEST SERVER
-			MarketJS.Initialize('ahVzfm1hcmtldGpzLWdhbWVjZW50ZXJyEQsSBEdhbWUYgICAgIDEqQoM');
-
-			// LIVE SERVER
-			// MarketJS.Initialize('GAME_KEY');			
 		},
 
 		startGame:function(){	

@@ -4,7 +4,18 @@
 	<title>Game Title -- TESTING</title>
 
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0,minimal-ui"/>
+	
+	<!--
+	Use the meta tag below for landscape games on mobile because the apple browser has a weird identification of screen size giving some pixels for a small white bar
+	-->
+	<meta name="viewport" content="width=device-width,height=device-height initial-scale=1, maximum-scale=1, user-scalable=0, minimal-ui"/>
+	
+	<!--
+	Use the meta tag below for portrait if there are problems in portrait
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	-->
+	
+	
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	
 	<link rel="stylesheet" type="text/css" href="game.css">	

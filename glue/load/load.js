@@ -41,9 +41,6 @@ loadScriptsSynchronously([
 	'glue/jukebox/Player.js',
 	'glue/jukebox/Manager.js',
 
-	// GA
-	'glue/analytics/market.js', // requires internet connection
-
 	// ORIENTATION
 	'glue/orientation/handler.js',
 
