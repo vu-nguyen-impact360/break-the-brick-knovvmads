@@ -6,11 +6,11 @@
 */
 
 // Ben: It's better experience to build games in portrait modes, for now
-var portraitMode=true;
+var portraitMode=false;
 
 // FIXED MOBILE DIMENSIONS
-var mobilePortraitWidth = 480;
-var mobilePortraitHeight = 640;
+var mobilePortraitWidth = 640;
+var mobilePortraitHeight = 480;
 var mobileLandscapeWidth = 640;
 var mobileLandscapeHeight = 480;
 
@@ -70,7 +70,10 @@ function adjustLayers(width,height){
 		
 		if(ig.ua.mobile){
 			$('#'+coreDivsToResize[i]).width(w);
-			$('#'+coreDivsToResize[i]).height(h);				
+			$('#'+coreDivsToResize[i]).height(h);
+			
+			
+							
 		}else{
 			$('#'+coreDivsToResize[i]).width(destW);
 			$('#'+coreDivsToResize[i]).height(destH);
@@ -92,11 +95,17 @@ function adjustLayers(width,height){
 	
 	$('#ajaxbar').width(w);
 	$('#ajaxbar').height(h);
-
+/*
 	
+	if (navigator.userAgent.match(/iPad;.*CPU.*OS 7_\d/i) ) 
+	{
+		$('body').height("698px");
+	}
+	*/
 	//console.log(destW,destH);
 }
 
+var minHeight=99999999;
 function sizeHandler() {	
 
     if (!$('#game')) {
@@ -120,8 +129,101 @@ function sizeHandler() {
 	heightRatio = window.innerHeight / mobileHeight ;
 	
 	adjustLayers();
-	
 	window.scrollTo(0,1);
+	
+	if(!ig.ua.mobile)
+	{
+		$('#tempdiv').hide();
+	}
+	//if devices is android and browser is chrome
+	//show instruction for full screen mode
+	if(navigator.userAgent.indexOf("Chrome") > 0) 
+	{
+		if(ig.ua.mobile)
+		{
+			if($(window))
+			{
+				// assign graphics
+				var elem = document.getElementById('scrollDown');
+				elem.src = 'media/graphics/orientate/scroll_down.png';
+				elem.style.height="40%";
+				elem.style.width="20%";
+				elem.style.backgroundColor = "rgba(11,156,49,0.4)";
+
+				//show once at the beginning if screen on landscape
+				if(window.orientation == 0)
+				{
+					$("#scrollDown").hide();
+				}
+				if(window.orientation == 90)
+				{
+					var test = document.body.offsetHeight;
+					if(test < minHeight)
+					{
+						minHeight = test;
+					}
+					$("#scrollDown").show();
+				}
+				//window rotate
+				$(window).on("orientationchange",function(event){
+						if(window.orientation == 0) //landscape
+						{
+							$("#scrollDown").hide();
+						}
+				    	if(window.orientation == 90);
+						{
+							$("#scrollDown").show();			
+						}
+						if(window.orientation == 0) //portrait
+						{
+							$("#scrollDown").hide();
+						}
+				  });
+
+				//window resize event
+				window.addEventListener('resize', function(event){
+					if(window.orientation == 0)
+					{
+						$("#scrollDown").hide();
+					}
+					if(window.orientation == 90)
+					{
+						if(portraitMode)
+						{
+							var cvs = document.getElementById('orientate'); // enable it if this is potrait game
+						}
+						else
+						{
+							var cvs = document.getElementById('game'); // enable it if this is landscape game
+						}
+						var tempdiv = document.getElementById('tempdiv');
+						var documentHeight = document.body.offsetHeight; // 392
+						var cvsHeight = cvs.clientHeight; // 200-300
+						var tempDivHeight=tempdiv.clientHeight; // 57
+
+						//console.log("docHeight:"+documentHeight);
+						//console.log("cvsHeight:"+cvs.clientHeight);
+						//console.log("tempDivHeight:"+tempdiv.clientHeight);
+						var totalHeight = cvsHeight+tempDivHeight;
+						if(totalHeight > minHeight)
+						{
+							$("#scrollDown").hide();
+						}
+						else
+						{
+							$("#scrollDown").show();
+						}
+					}
+				});
+
+			}
+		}
+		
+	}	
+	else
+	{
+		$('#tempdiv').hide();	
+	}
 };
 
 // MOBILE PATH: orientationHandler -> sizeHandler -> adjustLayers
@@ -180,7 +282,7 @@ window.addEventListener('orientationchange', function (evt) {
 }, false);
 
 // COPIED FROM BELLY RUB KITTY GAME
-/** Added into impact/sound-handler.js
+/*
 if(getQueryVariable('webview')==='true'){
 	$(window).focus(function() {
 		if(ig.ua.mobile) ig.game.resumeGame();
@@ -193,14 +295,20 @@ if(getQueryVariable('webview')==='true'){
 }else{
 	window.onfocus = function() {
 		if(ig.ua.mobile) ig.game.resumeGame();
-		if(ig.game) ig.game.unmute(true); 
+		if(ig.game.playerMute ==true)
+		{
+			
+		}
+		else
+		{
+			if(ig.game) ig.game.unmute(true); 
+		}
 	};
 	window.onblur = function() {
 		if(ig.game)ig.game.mute(true);
 	};
 }
 */
-
 document.ontouchmove = function(e){ 
     window.scrollTo(0, 1);
 }
