@@ -135,34 +135,78 @@ function sizeHandler() {
 	{
 		$('#tempdiv').hide();
 	}
+	
+	var ua = navigator.userAgent;
+	var uaArray = ua.split(' ');
+	var version = null;
+	for(var uaIndex=0;uaIndex<uaArray.length;uaIndex++)
+	{
+		var versiontext = "Version/";
+		console.log(uaArray[uaIndex].substr(0,8));
+		if(uaArray[uaIndex].substr(0,8) == versiontext)
+		{
+			version = uaArray[uaIndex];
+		}
+	}
+	var isChromium = window.chrome,vendorName = window.navigator.vendor;
+	
+	
 	//if devices is android and browser is chrome
 	//show instruction for full screen mode
-	if(navigator.userAgent.indexOf("Chrome") > 0) 
+	if(navigator.userAgent.indexOf("Chrome") > -1 && version == null) 
 	{
-		if(ig.ua.mobile)
+		if(ig.ua.mobile && isChromium !== null && isChromium !== undefined && vendorName === "Google Inc.")
 		{
 			if($(window))
 			{
 				// assign graphics
 				var elem = document.getElementById('scrollDown');
+				
 				elem.src = 'media/graphics/orientate/scroll_down.png';
 				elem.style.height="40%";
 				elem.style.width="20%";
 				elem.style.backgroundColor = "rgba(11,156,49,0.4)";
-
+				
 				//show once at the beginning if screen on landscape
 				if(window.orientation == 0)
 				{
 					$("#scrollDown").hide();
 				}
-				if(window.orientation == 90)
+				if(Math.abs(window.orientation) == 90)
 				{
 					var test = document.body.offsetHeight;
 					if(test < minHeight)
 					{
 						minHeight = test;
 					}
-					$("#scrollDown").show();
+					if(portraitMode)
+					{
+						var cvs = document.getElementById('orientate'); // enable it if this is potrait game
+					}
+					else
+					{
+						var cvs = document.getElementById('game'); // enable it if this is landscape game
+					}
+					var tempdiv = document.getElementById('tempdiv');
+					var documentHeight = document.body.offsetHeight; // 392
+					var cvsHeight = cvs.clientHeight; // 200-300
+					var tempDivHeight=tempdiv.clientHeight; // 57
+					
+					//console.log("docHeight:"+documentHeight);
+					//console.log("cvsHeight:"+cvs.clientHeight);
+					//console.log("tempDivHeight:"+tempdiv.clientHeight);
+					var totalHeight = cvsHeight+tempDivHeight;
+					
+					console.log(totalHeight +","+minHeight);
+					if(totalHeight > minHeight)
+					{
+						$("#scrollDown").hide();
+					}
+					else
+					{
+						$("#scrollDown").show();
+					}
+					//$("#scrollDown").show();
 				}
 				//window rotate
 				$(window).on("orientationchange",function(event){
@@ -170,7 +214,7 @@ function sizeHandler() {
 						{
 							$("#scrollDown").hide();
 						}
-				    	if(window.orientation == 90);
+				    	if(Math.abs(window.orientation) == 90);
 						{
 							$("#scrollDown").show();			
 						}
@@ -186,7 +230,7 @@ function sizeHandler() {
 					{
 						$("#scrollDown").hide();
 					}
-					if(window.orientation == 90)
+					if(Math.abs(window.orientation) == 90)
 					{
 						if(portraitMode)
 						{
@@ -215,10 +259,8 @@ function sizeHandler() {
 						}
 					}
 				});
-
 			}
 		}
-		
 	}	
 	else
 	{
@@ -245,6 +287,7 @@ function orientationHandler(){
 			//var orientation = true ;	//portrait
 			$('#orientate').hide();
 			$('#game').show();
+			
 			//alert(window.innerHeight +"/"+ window.innerWidth + "show");
 		}		
 	}
