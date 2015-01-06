@@ -6,11 +6,11 @@
 */
 
 // Ben: It's better experience to build games in portrait modes, for now
-var portraitMode=false;
+var portraitMode=true;
 
 // FIXED MOBILE DIMENSIONS
-var mobilePortraitWidth = 640;
-var mobilePortraitHeight = 480;
+var mobilePortraitWidth = 480;
+var mobilePortraitHeight = 640;
 var mobileLandscapeWidth = 640;
 var mobileLandscapeHeight = 480;
 
@@ -18,7 +18,7 @@ var mobileLandscapeHeight = 480;
 var mobileWidth=portraitMode?mobilePortraitWidth:mobileLandscapeWidth;
 var mobileHeight=portraitMode?mobilePortraitHeight:mobileLandscapeHeight;
 
-var desktopWidth=640,desktopHeight=480;
+var desktopWidth=480,desktopHeight=640;
 var w,h,multiplier,destW,destH;
 
 // A KEY-VALUE PAIR
@@ -117,18 +117,29 @@ function sizeHandler() {
 			
 	if(ig.ua.mobile){
 		multiplier = Math.min((h / mobileHeight), (w / mobileWidth));
+		
+		multiplierX = (w / mobileWidth);
+		multiplierY = (h / mobileHeight);
+		
+		
 	    destW = mobileWidth * multiplier;
 	    destH = mobileHeight * multiplier;
 	}else{
 		multiplier = Math.min((h / desktopHeight), (w / desktopWidth));
 	    destW = desktopWidth * multiplier;
 	    destH = desktopHeight * multiplier;
+		
+		//Not used as the multiplier is adjusted for both height and width
+		multiplierX = multiplier;
+		multiplierY = multiplier;
+	
 	}	
 	
 	widthRatio = window.innerWidth / mobileWidth ;
 	heightRatio = window.innerHeight / mobileHeight ;
 	
 	adjustLayers();
+	
 	window.scrollTo(0,1);
 	
 	if(!ig.ua.mobile)
@@ -235,7 +246,7 @@ function sizeHandler() {
 					{
 						if(portraitMode)
 						{
-							var cvs = document.getElementById('orientate'); // enable it if this is potrait game
+							var cvs = document.getElementById('game'); // enable it if this is potrait game
 						}
 						else
 						{
