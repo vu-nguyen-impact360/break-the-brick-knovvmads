@@ -139,6 +139,7 @@ function sizeHandler() {
 	var ua = navigator.userAgent;
 	var uaArray = ua.split(' ');
 	var version = null;
+	//alert(ua);
 	for(var uaIndex=0;uaIndex<uaArray.length;uaIndex++)
 	{
 		var versiontext = "Version/";
@@ -151,11 +152,11 @@ function sizeHandler() {
 	var isChromium = window.chrome,vendorName = window.navigator.vendor;
 	
 	
-	//if devices is android and browser is chrome
+	//if devices is android and browser is chrome and not webkit android
 	//show instruction for full screen mode
 	if(navigator.userAgent.indexOf("Chrome") > -1 && version == null) 
 	{
-		if(ig.ua.mobile && isChromium !== null && isChromium !== undefined && vendorName === "Google Inc.")
+		if(ig.ua.mobile && isChromium !== null && isChromium !== undefined )
 		{
 			if($(window))
 			{
@@ -264,6 +265,7 @@ function sizeHandler() {
 	}	
 	else
 	{
+		$("#scrollDown").hide();
 		$('#tempdiv').hide();	
 	}
 };
