@@ -13,11 +13,11 @@ html,body {
 	top: 0;
 	z-index: 0;
 }
-		
+
 #ajaxbar{
 	background:url('media/graphics/loading/ajax-loader.gif') center no-repeat;
 }
-		
+
 #canvas {
 	position: absolute;
 	left: 0;
@@ -26,7 +26,7 @@ html,body {
 	height: 100%;
 	/*image-rendering: optimizeSpeed;*/
 	-ms-interpolation-mode: nearest-neighbor;
-	-webkit-optimize-contrast;
+	image-rendering:-webkit-optimize-contrast;
 	-webkit-transform: scale3d(1, 1, 1);
 	z-index: 1;
 }
@@ -68,8 +68,8 @@ html,body {
 	background-color:#fff;
 	left:0;
 	top:0;
-	display:none;	
-}	
+	display:none;
+}
 
 .play img {
 	position:absolute;
@@ -110,7 +110,7 @@ html,body {
 
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
-	border-radius: 10px;	
+	border-radius: 10px;
 	/*border:2px solid #969696;*/
 }
 
