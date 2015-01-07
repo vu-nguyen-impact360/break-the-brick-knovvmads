@@ -26,7 +26,7 @@ html,body {
 	height: 100%;
 	/*image-rendering: optimizeSpeed;*/
 	-ms-interpolation-mode: nearest-neighbor;
-	image-rendering:-webkit-optimize-contrast;
+	/*image-rendering:-webkit-optimize-contrast;*/
 	-webkit-transform: scale3d(1, 1, 1);
 	z-index: 1;
 }
