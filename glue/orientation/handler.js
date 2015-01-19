@@ -6,7 +6,7 @@
 */
 
 // Ben: It's better experience to build games in portrait modes, for now
-var portraitMode=false;
+var portraitMode=true;
 
 // FIXED MOBILE DIMENSIONS
 var mobilePortraitWidth = 480;
@@ -143,7 +143,7 @@ function sizeHandler() {
 	for(var uaIndex=0;uaIndex<uaArray.length;uaIndex++)
 	{
 		var versiontext = "Version/";
-		console.log(uaArray[uaIndex].substr(0,8));
+		//console.log(uaArray[uaIndex].substr(0,8));
 		if(uaArray[uaIndex].substr(0,8) == versiontext)
 		{
 			version = uaArray[uaIndex];
