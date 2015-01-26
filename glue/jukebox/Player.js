@@ -10,7 +10,6 @@ this.jukebox = {};
  * by the {jukebox.Manager} for creating and managing clones.
  */
 jukebox.Player = function(settings, origin) {
-
 	this.id = ++jukebox.__jukeboxId;
 	this.origin = origin || null;
 
