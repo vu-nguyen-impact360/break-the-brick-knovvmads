@@ -65,7 +65,7 @@ def uploadResultToS3(bucket,game_folder_name,srcDir):
 	k = Key(b)
 	
 	""" PATTERN MATCHING """	
-	file_pattern = re.compile(r'.*\.(md$|aif$|tiff$|au$|psd$|xcf$|sh$|py$|php$|bat$|git$|txt$|jar$|DS_Store)')
+	file_pattern = re.compile(r'.*\.(md$|zip$|aif$|tiff$|au$|psd$|xcf$|sh$|py$|php$|bat$|git$|txt$|jar$|DS_Store)')
 	folder_pattern = re.compile(r'.*(/glue/|/lib/|/tools/|git)')
 
 	""" UPLOAD SETTINGS """
