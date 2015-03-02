@@ -14,7 +14,7 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 
 """ OWN SERVER """
-conn = S3Connection('AKIAJT4I3IAFP7WEPBMQ', 'NhrbnwHsMUKMnfuKYqgEakf6PTOaoN+oWrhjU9UX')
+conn = S3Connection(os.environ['AWS_ACCESS_KEY_ID'],os.environ['AWS_SECRET_ACCESS_KEY'])
 BUCKET_NAME = 'marketjs-factory'
 GAME_NAME = os.path.split(os.getcwd())[-1] # same as folder name
 LANGUAGE_CODE = None
