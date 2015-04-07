@@ -91,9 +91,9 @@ var _SETTINGS = {
 			'Enabled':true,
 		},
 		'Logo':{
-			'Enabled':true,
+			'Enabled':false,
 			'Link':'http://google.com',
-			'LinkEnabled':true,
+			'LinkEnabled':false,
 			'NewWindow': true,	// open link in new window, although this behavior can be override by browsers preference
 			'Width':166,
 			'Height':61,
@@ -105,9 +105,9 @@ var _SETTINGS = {
 			'Enabled':true,
 		},
 		'Logo':{
-			'Enabled':true,
+			'Enabled':false,
 			'Link':'http://google.com',
-			'LinkEnabled': true, // Makes the logo clickable or not (ie activate/deactivate link)
+			'LinkEnabled': false, // Makes the logo clickable or not (ie activate/deactivate link)
 			'NewWindow': true,	// open link in new window, although this behavior can be override by browsers preference
 			'Width':166,
 			'Height':61,

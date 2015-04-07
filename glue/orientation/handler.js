@@ -6,7 +6,7 @@
 */
 
 // Ben: It's better experience to build games in portrait modes, for now
-var portraitMode=true;
+var portraitMode=false;
 
 // FIXED MOBILE DIMENSIONS
 var mobilePortraitWidth = 480;
