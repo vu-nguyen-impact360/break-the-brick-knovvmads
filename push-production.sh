@@ -187,7 +187,7 @@ deploy (){
 
 gitpush (){
 	git add --all
-	git commit -m $1
+	git commit -m '$*'
 	git push origin master
 }
 
