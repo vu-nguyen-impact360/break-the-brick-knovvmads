@@ -105,7 +105,7 @@ var _SETTINGS = {
 			'Enabled':true,
 		},
 		'Logo':{
-			'Enabled':false,
+			'Enabled':true,
 			'Link':'http://google.com',
 			'LinkEnabled': false, // Makes the logo clickable or not (ie activate/deactivate link)
 			'NewWindow': true,	// open link in new window, although this behavior can be override by browsers preference
