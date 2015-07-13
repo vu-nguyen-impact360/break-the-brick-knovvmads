@@ -150,11 +150,12 @@ function sizeHandler() {
 		}
 	}
 	var isChromium = window.chrome,vendorName = window.navigator.vendor;
-	
+	var webview = navigator.userAgent.indexOf("wv");
+	var samsungbrowser = navigator.userAgent.indexOf("SamsungBrowser");
 	
 	//if devices is android and browser is chrome and not webkit android
 	//show instruction for full screen mode
-	if(navigator.userAgent.indexOf("Chrome") > -1 && version == null) 
+	if(navigator.userAgent.indexOf("Chrome") > -1 && version == null && webview <= -1 && samsungbrowser<=-1) 
 	{
 		if(ig.ua.mobile && isChromium !== null && isChromium !== undefined )
 		{
