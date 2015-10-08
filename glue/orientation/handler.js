@@ -131,10 +131,12 @@ function sizeHandler() {
 	adjustLayers();
 	window.scrollTo(0,1);
 	
+	/*
 	if(!ig.ua.mobile)
 	{
 		$('#tempdiv').hide();
 	}
+	*/
 	
 	var ua = navigator.userAgent;
 	var uaArray = ua.split(' ');
@@ -155,6 +157,7 @@ function sizeHandler() {
 	
 	//if devices is android and browser is chrome and not webkit android
 	//show instruction for full screen mode
+	/* DEPRECATED
 	if(navigator.userAgent.indexOf("Chrome") > -1 && version == null && webview <= -1 && samsungbrowser<=-1) 
 	{
 		if(ig.ua.mobile && isChromium !== null && isChromium !== undefined )
@@ -269,6 +272,7 @@ function sizeHandler() {
 		$("#scrollDown").hide();
 		$('#tempdiv').hide();	
 	}
+	*/
 };
 
 // MOBILE PATH: orientationHandler -> sizeHandler -> adjustLayers
@@ -355,6 +359,8 @@ if(getQueryVariable('webview')==='true'){
 	};
 }
 */
+
 document.ontouchmove = function(e){ 
     window.scrollTo(0, 1);
+	e.preventDefault();
 }
