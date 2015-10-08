@@ -362,5 +362,5 @@ if(getQueryVariable('webview')==='true'){
 
 document.ontouchmove = function(e){ 
     window.scrollTo(0, 1);
-	e.preventDefault();
+	//e.preventDefault();
 }
