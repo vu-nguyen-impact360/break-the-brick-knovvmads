@@ -1,2 +1,2 @@
 #! /bin/bash
-sh push.sh -b -l en -a -g 'add box2d plugin'
+sh push.sh -b -l en -a -g 'Correction - revert last commit because of wrong push.'
