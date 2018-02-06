@@ -94,12 +94,12 @@
             if(ig.ua.mobile){
                 this.director = new ig.Director(this,[
                         LevelOpening,
-                        LevelTestMobile
+                        LevelGame
                 ]);
             }else{
                 this.director = new ig.Director(this,[
                         LevelOpening,
-                        LevelTestDesktop
+                        LevelGame
                 ]);
             }
 
