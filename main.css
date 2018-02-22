@@ -122,3 +122,15 @@ html,body {
 	height:10px;
 	width:100%;
 }
+@font-face{
+		font-family:'Champ';
+		src:
+			url('media/font/Champ.woff') format('woff'),
+			url('media/font/Champ.ttf') format('truetype'); 
+}
+
+#preloadText{
+        position: absolute;
+        top: -100;
+        left: -100;
+}
