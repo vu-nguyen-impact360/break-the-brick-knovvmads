@@ -66,9 +66,9 @@ def uploadResultToS3(bucket,game_folder_name,srcDir):
 	k = Key(b)
 	
 	""" PATTERN MATCHING """	
-	file_pattern = re.compile(r'.*\.(md$|aif$|tiff$|au$|psd$|xcf$|sh$|py$|php$|bat$|git$|txt$|jar$|DS_Store)')
-	folder_pattern = re.compile(r'.*(/glue/|/lib/|/tools/|git)')
-	folder_pattern_windows = re.compile(r'.*(\\glue\\|\\lib\\|\\tools\\|git)')
+	file_pattern = re.compile(r'.*\.(md$|aif$|tiff$|au$|psd$|xcf$|sh$|py$|pyc$|php$|bat$|git$|gitignore$|txt$|jar$|DS_Store$)')
+	folder_pattern = re.compile(r'.*(/glue/|/glue|/lib/|/lib|/tools/|/tools|/git/|/git|git)')
+	folder_pattern_windows = re.compile(r'.*(\\glue\\|\\glue|\\lib\\|\\lib|\\tools\\|\\tools|git)')
 
 	""" UPLOAD SETTINGS """
 	day_freshness = 1
@@ -104,7 +104,6 @@ def upload(k,b,game_folder_name,path,file,srcDir,language_code):
 	k.key = language_code + '/' + game_folder_name + "/" + os.path.relpath(os.path.join(path,file),srcDir)
 	k.key = re.sub(r'\\', '/', k.key) #added to avoid forward slash in k.key 
 	print 'sending ' + file + ' to https://s3-' + BUCKET_LOCATION + '.amazonaws.com/'  + b.name + '/' + k.key + ' ...'
-	
 	k.set_contents_from_filename(os.path.join(path,file))
 
 	if path.find('_factory') >=0:

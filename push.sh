@@ -6,8 +6,8 @@
 # -----------------------------------------------------------------------
 
 #! /bin/bash
-# Usage: sh push.sh [options]
-# Example: sh push.sh -b -d (bake, then deploy)
+# Usage: bash push.sh [options]
+# Example: bash push.sh -b -d (bake, then deploy)
 
 CURRENT_DIRECTORY=${PWD}/
 
@@ -17,7 +17,7 @@ bake (){
     echo ""
 
     cd tools
-    ./bake.sh
+    bash bake.sh
     cd ..
 
     echo ""
@@ -53,7 +53,7 @@ secure_regular (){
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    php secure_dev.php 'domainlock.js'
+    jscrambler -c tools/jscrambler-dev.json 'domainlock.js' -o 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
@@ -69,7 +69,7 @@ secure_regular (){
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    php secure_dev.php 'game.js'
+    jscrambler -c tools/jscrambler-dev.json 'game.js' -o 'game.js'
 
     echo ""
     echo "Securing Done!"
@@ -118,7 +118,7 @@ secure_strong (){
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    php secure_dev.php 'domainlock.js'
+    jscrambler -c tools/jscrambler-dev.json 'domainlock.js' -o 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
@@ -134,7 +134,7 @@ secure_strong (){
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    php secure_dev.php 'game.js'
+    jscrambler -c tools/jscrambler-dev.json 'game.js' -o 'game.js'
 
     echo ""
     echo "Securing Done!"
@@ -162,8 +162,8 @@ compile_test_game (){
     echo "Done!"
 
     echo "Compiling game.css for testing ..."
-    sh css-append.sh
-    sh css-minify.sh temp.css > game.css
+    bash css-append.sh
+    bash css-minify.sh temp.css > game.css
     sed -i.bak 's/..\/..\/..\/..\/..\/..\///g' game.css
     rm temp.css
     rm *.bak
@@ -179,7 +179,7 @@ prep_production (){
     #echo '$3:' $3
     #echo '$4:' $4
 
-    sh zip-media-folder.sh $1
+    bash zip-media-folder.sh $1
     echo "Done ..."
 
     echo "Create basic index.html ..."
@@ -267,6 +267,7 @@ while getopts "l:bnahg:" opt; do
         bake
         prep_production $3
         compile_test_game
+        # secure_regular
         secure_strong
       ;;
     n)
