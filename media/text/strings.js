@@ -35,8 +35,9 @@ var _STRINGS = {
 		
 		"toturial01_01":"Do you want a tutorial?",
 		
-		"toturial02_01":"click anywhere to control a bar",
+		"toturial02_01":"click bar to control it",
 		"toturial02_02":"with y axis",
+		"toturial02_03":"tap bar to control it",
 		
 		"toturial03_01":"when ball hited a bar",
 		"toturial03_02":"it will reflected from the center point of a bar",
