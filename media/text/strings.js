@@ -33,30 +33,30 @@ var _STRINGS = {
 		"Score":"Score",
 		"Time":"Time",
 		
-		"toturial01_01":"Do you want a tutorial?",
+		"toturial01_01":"Start the tutorial?",
 		
-		"toturial02_01":"click bar to control it",
-		"toturial02_02":"with y axis",
-		"toturial02_03":"tap bar to control it",
+		"toturial02_01":"Click the bar to control it",
+		"toturial02_02":"horizontally",
+		"toturial02_03":"tap & hold the bar to control it",
 		
-		"toturial03_01":"when ball hited a bar",
-		"toturial03_02":"it will reflected from the center point of a bar",
-		"toturial03_03":"so, you can control a direction of ball",
+		"toturial03_01":"when the ball hits the bar",
+		"toturial03_02":"it will bounce off",
+		"toturial03_03":"so, you can control the direction.",
 		
-		"toturial04_01":"hit a block with ball to get a scare",
-		"toturial04_02":"twice time to break a normal block",
-		"toturial04_03":"and once time to break a breaken block",
+		"toturial04_01":"Hit a brick with the ball to break it;",
+		"toturial04_02":"Normal bricks need to be hit twice,",
+		"toturial04_03":"cracked bricks will break after one hit.",
 		
-		"toturial05_01":"iron block it can not breaking",
-		"toturial05_02":"furthermore, acceleration of ball is increase",
-		"toturial05_03":"when you hit it, be carefull",
+		"toturial05_01":"Iron blocks can't be broken",
+		"toturial05_02":"and they increase the speed of the ball.",
+		"toturial05_03":"Try to avoid them if you can!",
 		
-		"toturial06_01":"sometime when you blocking a block",
-		"toturial06_02":"it will drop a power-up",
-		"toturial06_03":"you can got it by your bar",
+		"toturial06_01":"Destroying bricks will occassionally",
+		"toturial06_02":"drop power-ups,",
+		"toturial06_03":"catch them with your bar to use them.",
 		
-		"toturial07_01":"now you get ready",
-		"toturial07_02":"have a fun when playing Brick Breaker",
+		"toturial07_01":"Are you ready?",
+		"toturial07_02":"Have fun with Brick Breaker!",
 		
 		
 	},
