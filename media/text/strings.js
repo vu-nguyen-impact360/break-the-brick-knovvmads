@@ -32,6 +32,7 @@ var _STRINGS = {
 		"Lose":"You lose!",
 		"Score":"Score",
 		"Time":"Time",
+		"Next":"next",
 		
 		"toturial01_01":"Start the tutorial?",
 		
