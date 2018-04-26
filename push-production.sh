@@ -73,7 +73,7 @@ secure_strong (){
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    php secure_production.php 'domainlock.js'
+    jscrambler -c tools/jscrambler-production.json 'domainlock.js' -o 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
@@ -89,7 +89,7 @@ secure_strong (){
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    php secure_production.php 'game.js'
+    jscrambler -c tools/jscrambler-production.json 'game.js' -o 'game.js'
 
     echo ""
     echo "Securing Done!"
