@@ -9,6 +9,13 @@
 # Usage: bash push.sh [options]
 # Example: bash push.sh -b -d (bake, then deploy)
 
+# Configurations
+ENABLE_FRAMEBREAKER=true
+ENABLE_COPYRIGHT=true
+ENABLE_CACHE_BURST=true
+ENABLE_CLOUDFRONT_INVALIDATION=false
+
+# Variables
 CURRENT_DIRECTORY=${PWD}/
 
 bake (){
@@ -26,7 +33,7 @@ bake (){
 }
 
 secure_regular (){    
-    # 1st layer of main obfuscation
+    # Function: protect javascript files with regular security options (no framebreaker or copyright)
     echo ""
     echo "Preparing domainlock ..."
     echo ""
@@ -39,21 +46,10 @@ secure_regular (){
     echo ""
     python inject_domainlock_breakout_info.py 'domainlock.js'
     
-    # suppress console functions, freeze console and context2D
-    echo ""
-    echo "Injecting Anti-Tampering protection code"
-    echo ""
-    python inject_protection.py 'domainlock.js'
-    
     echo ""
     echo "Preparing factory domainlock ..."
     echo ""
     prep_factory_domainlock
-
-    echo ""
-    echo "Securing by obscuring ..."
-    echo ""
-    jscrambler -c tools/jscrambler-dev.json 'domainlock.js' -o 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
@@ -65,38 +61,45 @@ secure_regular (){
     echo ""
     rm domainlock.js
 
-    # 2nd layer of global obfuscation
+    # global obfuscation
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    jscrambler -c tools/jscrambler-dev.json 'game.js' -o 'game.js'
+    javascript-obfuscator 'game.js' -o 'game.js' --config 'tools/javascript-obfuscator-dev.json'
+    sed -i.bak 's/{data;}else{return;}/{}else{return;}/g' game.js
+    rm *.bak
 
     echo ""
     echo "Securing Done!"
     echo ""
-
 }
 
 secure_strong (){    
-    # 1st layer of main obfuscation
+    # Function: protect javascript files with strong security options
     echo ""
     echo "Preparing domainlock ..."
     echo ""
     rm domainlock.js
     python prep_domainlock.py 'lib/game/main.js' 'domainlock.js' 'this.START_OBFUSCATION;' 'this.END_OBFUSCATION;'
 
-    # Inject framebreaker
-    echo ""
-    echo "Injecting framebreaker ..."
-    echo ""
-    python inject_framebreaker.py 'domainlock.js'
-    echo ""
+    if [ "$ENABLE_FRAMEBREAKER" = true ] ; 
+    then
+        # Inject framebreaker
+        echo ""
+        echo "Injecting framebreaker ..."
+        echo ""
+        python inject_framebreaker.py 'domainlock.js'
+        echo ""
+    fi
 
-    # copyright info
-    echo ""
-    echo "Injecting Copyright info"
-    echo ""
-    python inject_copyright_info.py 'domainlock.js'
+    if [ "$ENABLE_COPYRIGHT" = true ] ; 
+    then
+        # copyright info
+        echo ""
+        echo "Injecting Copyright info"
+        echo ""
+        python inject_copyright_info.py 'domainlock.js'
+    fi
 
     # domainlock breakout attempt info
     echo ""
@@ -104,21 +107,10 @@ secure_strong (){
     echo ""
     python inject_domainlock_breakout_info.py 'domainlock.js'
     
-    # suppress console functions, freeze console and context2D
-    echo ""
-    echo "Injecting Anti-Tampering protection code"
-    echo ""
-    python inject_protection.py 'domainlock.js'
-    
     echo ""
     echo "Preparing factory domainlock ..."
     echo ""
     prep_factory_domainlock
-
-    echo ""
-    echo "Securing by obscuring ..."
-    echo ""
-    jscrambler -c tools/jscrambler-dev.json 'domainlock.js' -o 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
@@ -130,16 +122,17 @@ secure_strong (){
     echo ""
     rm domainlock.js
 
-    # 2nd layer of global obfuscation
+    # global obfuscation
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    jscrambler -c tools/jscrambler-dev.json 'game.js' -o 'game.js'
+    javascript-obfuscator 'game.js' -o 'game.js' --config 'tools/javascript-obfuscator-dev.json'
+    sed -i.bak 's/{data;}else{return;}/{}else{return;}/g' game.js
+    rm *.bak
 
     echo ""
     echo "Securing Done!"
     echo ""
-
 }
 
 prep_factory_domainlock(){
@@ -240,6 +233,14 @@ deploy (){
     echo ""
     echo "Deploying Done!"
     echo ""
+	
+	if [ "$ENABLE_CLOUDFRONT_INVALIDATION" = true ] ; 
+    then
+        echo ""
+        echo "Clearing cloudfront cache ..."
+        echo ""
+        python cloudfront_invalidate_cache.py $2
+    fi
 }
 
 gitpush (){
@@ -248,6 +249,23 @@ gitpush (){
     git push origin master
 }
 
+inject_burst_cache_version_tag(){
+    # Function: inject version tag to burst cache in index.html
+    if [ "$ENABLE_CACHE_BURST" = true ] ; 
+    then
+        # Inject cache burst versioning tag
+        echo ""
+        echo "Injecting cache burst versioning tag ..."
+        echo ""
+        CACHE_BURST_VERSION_TAG="v=$(date +%s)"
+        echo "Injecting the version into index.html ..."
+        sed -i.bak 's/game.js/game.js?'$CACHE_BURST_VERSION_TAG'/g' index.html
+        sed -i.bak 's/game.css/game.css?'$CACHE_BURST_VERSION_TAG'/g' index.html
+        rm *.bak
+        echo "Done!"
+        echo ""
+    fi
+}
 while getopts "l:bnahg:" opt; do
   case $opt in
     h)
@@ -269,6 +287,7 @@ while getopts "l:bnahg:" opt; do
         compile_test_game
         # secure_regular
         secure_strong
+		inject_burst_cache_version_tag
       ;;
     n)
         deploy --new $3

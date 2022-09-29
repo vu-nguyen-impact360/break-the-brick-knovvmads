@@ -9,6 +9,13 @@
 # Usage: sh push.sh [options]
 # Example: sh push.sh -b -d (bake, then deploy)
 
+# Configurations
+ENABLE_FRAMEBREAKER=true
+ENABLE_COPYRIGHT=true
+ENABLE_CACHE_BURST=true
+ENABLE_CLOUDFRONT_INVALIDATION=true
+
+# Variables
 CURRENT_DIRECTORY=${PWD}/
 
 bake (){
@@ -33,25 +40,31 @@ promo (){
 }
 
 secure_strong (){    
-    # 1st layer of main obfuscation
+    # main obfuscation
     echo ""
     echo "Preparing domainlock ..."
     echo ""
     rm domainlock.js
     python prep_domainlock.py 'lib/game/main.js' 'domainlock.js' 'this.START_OBFUSCATION;' 'this.END_OBFUSCATION;'
 
-    # Inject framebreaker
-    echo ""
-    echo "Injecting framebreaker ..."
-    echo ""
-    python inject_framebreaker.py 'domainlock.js'
-    echo ""
+    if [ "$ENABLE_FRAMEBREAKER" = true ] ; 
+    then
+        # Inject framebreaker
+        echo ""
+        echo "Injecting framebreaker ..."
+        echo ""
+        python inject_framebreaker.py 'domainlock.js'
+        echo ""
+    fi
 
-    # copyright info
-    echo ""
-    echo "Injecting Copyright info"
-    echo ""
-    python inject_copyright_info.py 'domainlock.js'
+    if [ "$ENABLE_COPYRIGHT" = true ] ; 
+    then
+        # copyright info
+        echo ""
+        echo "Injecting Copyright info"
+        echo ""
+        python inject_copyright_info.py 'domainlock.js'
+    fi
 
     # domainlock breakout attempt info
     echo ""
@@ -59,21 +72,10 @@ secure_strong (){
     echo ""
     python inject_domainlock_breakout_info.py 'domainlock.js'
     
-    # suppress console functions, freeze console and context2D
-    echo ""
-    echo "Injecting Anti-Tampering protection code"
-    echo ""
-    python inject_protection.py 'domainlock.js'
-    
     echo ""
     echo "Preparing factory domainlock ..."
     echo ""
     prep_factory_domainlock
-
-    echo ""
-    echo "Securing by obscuring ..."
-    echo ""
-    jscrambler -c tools/jscrambler-production.json 'domainlock.js' -o 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
@@ -85,16 +87,17 @@ secure_strong (){
     echo ""
     rm domainlock.js
 
-    # 2nd layer of global obfuscation
+    # global obfuscation
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    jscrambler -c tools/jscrambler-production.json 'game.js' -o 'game.js'
+    javascript-obfuscator 'game.js' -o 'game.js' --config 'tools/javascript-obfuscator-production.json'
+    sed -i.bak 's/{data;}else{return;}/{}else{return;}/g' game.js
+    rm *.bak
 
     echo ""
     echo "Securing Done!"
     echo ""
-
 }
 
 prep_factory_domainlock(){
@@ -195,22 +198,41 @@ deploy (){
     echo "Deploying ..."
     echo ""
 
-    python2.7 boto-s3-upload-production.py -l $2 $1
+    python boto-s3-upload-production.py -l $2 $1
 
     echo ""
     echo "Deploying Done!"
     echo ""
 
-    echo ""
-    echo "Clearing cloudfront cache ..."
-    echo ""
-    python cloudfront_invalidate_cache_production.py
+    if [ "$ENABLE_CLOUDFRONT_INVALIDATION" = true ] ; 
+    then
+        echo ""
+        echo "Clearing cloudfront cache ..."
+        echo ""
+        python cloudfront_invalidate_cache_production.py $2
+    fi
 }
 
 gitpush (){
     git add --all
     git commit -m '$*'
     git push origin master
+}
+
+inject_burst_cache_version_tag(){
+  if [ "$ENABLE_CACHE_BURST" = true ] ; 
+  then
+    # Inject cache burst versioning tag
+    echo ""
+    echo "Injecting cache burst versioning tag ..."
+    echo ""
+    CACHE_BURST_VERSION_TAG="v=$(date +%s)"
+    echo "Injecting the version into index.html ..."
+    sed -i.bak 's/game.js/game.js?'$CACHE_BURST_VERSION_TAG'/g' index.html
+    sed -i.bak 's/game.css/game.css?'$CACHE_BURST_VERSION_TAG'/g' index.html
+    rm *.bak
+    echo ""
+  fi
 }
 
 # NOTE: CANNOT COMMIT TO REPOSITORY, THIS IS PRODUCTION. ONLY TRANSFER DATA TO S3
@@ -233,6 +255,7 @@ while getopts "l:bnahs:" opt; do
         prep_production $3
         compile_test_game
         secure_strong
+		inject_burst_cache_version_tag
         promo
       ;;
     n)
