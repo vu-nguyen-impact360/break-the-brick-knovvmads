@@ -122,11 +122,18 @@ html,body {
 	height:10px;
 	width:100%;
 }
-@font-face{
-		font-family:'Champ';
-		src:
-			url('media/font/Champ.woff') format('woff'),
-			url('media/font/Champ.ttf') format('truetype'); 
+@font-face {
+	font-family: 'Oswald';
+	src:
+		url("media/font/Oswald-Regular.ttf") format("truetype");
+		url('media/font/Oswald-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'OswaldBold';
+	src:
+			url("media/font/Oswald-Bold.ttf") format("truetype");
+			url('media/font/Oswald-Bold.woff') format('woff');
 }
 
 #preloadText{
