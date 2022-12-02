@@ -52,6 +52,7 @@ var _STRINGS = {
 		"toturial07_02": "Let's break some bricks!",
 	},
 	"Results": {
-		"Title": "High score",
+		"HighScore": "BEST",
+		"Score": "SCORE"
 	},
 };
