@@ -6,14 +6,18 @@
 # -----------------------------------------------------------------------
 
 #! /bin/bash
-# Usage: sh push.sh [options]
-# Example: sh push.sh -b -d (bake, then deploy)
+# Usage: bash push.sh [options]
+# Example: bash push.sh -b -d (bake, then deploy)
+SCRIPT_VERSION="1.1.2"
 
 # Configurations
+LANGUAGE="en"
 ENABLE_FRAMEBREAKER=true
 ENABLE_COPYRIGHT=true
 ENABLE_CACHE_BURST=true
 ENABLE_CLOUDFRONT_INVALIDATION=true
+INCLUDE_VCONSOLE=false
+REMOVE_TEST_AD=false
 
 # Variables
 CURRENT_DIRECTORY=${PWD}/
@@ -23,8 +27,11 @@ bake (){
     echo "Baking ..."
     echo ""
 
+    python build-versioning-production.py
+
     cd tools
-    ./bake.sh
+    chmod +x bake.sh
+    bash bake.sh
     cd ..
 
     echo ""
@@ -35,7 +42,7 @@ bake (){
 promo (){
     echo ""
     echo "Preparing promo ..."
-    sh promo.sh
+    bash promo.sh
     echo ""
 }
 
@@ -98,6 +105,7 @@ secure_strong (){
     echo ""
     echo "Securing Done!"
     echo ""
+
 }
 
 prep_factory_domainlock(){
@@ -125,8 +133,8 @@ compile_test_game (){
     echo "Done!"
 
     echo "Compiling game.css for testing ..."
-    sh css-append.sh
-    sh css-minify.sh temp.css > game.css
+    bash css-append.sh
+    bash css-minify.sh temp.css game.css
     sed -i.bak 's/..\/..\/..\/..\/..\/..\///g' game.css
     rm temp.css
     rm *.bak
@@ -142,7 +150,7 @@ prep_production (){
     #echo '$3:' $3
     #echo '$4:' $4
 
-    sh zip-media-folder.sh $1
+    bash zip-media-folder.sh $1
     echo "Done ..."
 
     echo "Create basic index.html ..."
@@ -182,6 +190,8 @@ prep_production (){
     --js=glue/ie/ie.js \
     --js=glue/jukebox/Player.js \
     --js=glue/howler/howler.js \
+#    --js=glue/font/promise.polyfill.js \
+#    --js=glue/font/fontfaceobserver.standalone.js \
     --js=game.min.js \
     --js_output_file=_factory/game/game.js \
     --language_in=ECMASCRIPT5
@@ -194,8 +204,10 @@ prep_production (){
 }
 
 deploy (){
+    # Function: deploy to S3
     echo ""
-    echo "Deploying ..."
+    echo "Deploying $1..."
+    echo "Language: $2"
     echo ""
 
     python boto-s3-upload-production.py -l $2 $1
@@ -213,10 +225,12 @@ deploy (){
     fi
 }
 
-gitpush (){
-    git add --all
-    git commit -m '$*'
-    git push origin master
+compress_build (){
+    echo "Compressing build ..."
+    echo ""
+    bash compress.sh
+    echo "Compressing Done!"
+    echo ""
 }
 
 inject_burst_cache_version_tag(){
@@ -235,37 +249,114 @@ inject_burst_cache_version_tag(){
   fi
 }
 
+print_version_numbers(){
+    # Function: Prints the version numbers of the push script and the compiled build
+    echo ""
+    echo "Push script version: v$SCRIPT_VERSION"
+    python build-versioning-production.py print
+    echo "Done!"
+    echo ""
+}
+
+usage() {
+    # Function: Print a help message.
+    echo "Usage: bash $0 [options]" 1>&2 
+    
+    echo "Options"
+    echo -e "\t -b \t \t Bake and make compiled build files"
+    echo -e "\t -l [option] \t Select a build language by code"
+        echo -e "\t \t \t Option - language code: en, jp, kr, zh, de, es, etc..."
+        echo -e "\t \t \t Example: bash $0 -l en" 
+        echo
+    echo -e "\t -a \t \t Upload all files"
+    echo -e "\t -n \t \t Upload new (recent) files up to 12 hours"
+    echo -e "\t -c \t \t Compress build files"
+    echo -e "\t -v \t \t Print version number of this build script and the version number of the compiled build"
+    echo -e "\t -u [option] \t Update build version number"
+        echo -e "\t \t \t Option - update type: major, minor, patch, or reset"
+        echo -e "\t \t \t \t major - Update major version number, e.g. from 1.0.0 to 2.0.0 for significant changes that break backward compatibility"
+        echo -e "\t \t \t \t minor - Update minor version number, e.g. from 1.0.0 to 1.1.0 for backward compatible new features"
+        echo -e "\t \t \t \t patch - Update patch version number, e.g. from 1.0.0 to 1.0.1 for backward compatible bug fixes"
+        echo -e "\t \t \t \t reset - Reset version number to 1.0.0"
+        echo -e "\t \t \t Example: bash $0 -u patch"
+        echo
+    echo -e "\t -h \t \t Print this help message"
+    echo "Working example (copy paste directly): bash $0 -b -l en -a -g 'somefix'"
+}
+
+exit_abnormal() {
+    # Function: Exit with error.
+    usage
+    exit 1
+}
+
 # NOTE: CANNOT COMMIT TO REPOSITORY, THIS IS PRODUCTION. ONLY TRANSFER DATA TO S3
-while getopts "l:bnahs:" opt; do
+# Options lists
+optstring=":l:u:hbnacv"
+
+# No arguments given
+if [ $# -eq 0 ]
+then
+    usage
+fi
+
+# Execute Prioritized Options
+while getopts "$optstring" opt
+do
+   case $opt in
+      u)
+        update_version_number ${OPTARG}
+        ;;
+      l)
+        LANGUAGE=${OPTARG}
+        echo "language to use:" ${LANGUAGE}
+        ;;
+      :)
+        echo "Error: -${OPTARG} requires an argument."
+        exit_abnormal
+        ;;
+      \?)
+        echo "Invalid option: -$OPTARG" >&2
+        exit_abnormal
+        ;;
+   esac
+done
+
+# Execute other options
+OPTIND=1 # Reset as getopts has been used previously in the shell.
+while getopts "$optstring" opt
+do
   case $opt in
     h)
-        echo "Usage: sh push.sh [option]"
-        echo "Deploy Options"
-        echo "\t -b \t Build all files"
-        echo "\t -l \t Select language by code (en,jp,kr,zh,de,es, etc ...)"
-        echo "\t -a \t Upload all files"
-        echo "\t -n \t Upload new (recent) files up to 12 hrs"
-        echo "Working example (copy paste directly): sh push-production.sh -b -l en -a"
-      ;;
-    l)
-        echo "language to use:" $3
+        usage
       ;;
     b)
         bake
-        prep_production $3
+        prep_production ${LANGUAGE}
         compile_test_game
         secure_strong
-		inject_burst_cache_version_tag
+        inject_burst_cache_version_tag
         promo
       ;;
     n)
-        deploy --new $3
+        deploy --new ${LANGUAGE}
       ;;
     a)
-        deploy --all $3
+        deploy --all ${LANGUAGE}
+      ;;
+    c)
+        compress_build
+      ;;
+    v)
+        print_version_numbers
+      ;;
+    :)
+        echo "Error: -${OPTARG} requires an argument."
+        exit_abnormal
       ;;
     \?)
         echo "Invalid option: -$OPTARG" >&2
+        exit_abnormal
       ;;
   esac
 done
