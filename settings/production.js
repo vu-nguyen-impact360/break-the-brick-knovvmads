@@ -24,7 +24,7 @@ var _SETTINGS = {
     'Ad': {
         'Mobile': {
             'Preroll': {
-                'Enabled': true,
+                'Enabled': false,
                 'Duration': 5,
                 'Width': 300,
                 'Height': 250,
@@ -121,7 +121,7 @@ var _SETTINGS = {
     },
 
     'TapToStartAudioUnlock': {
-        'Enabled': true
+        'Enabled': false
     },
 
     'Gamecenter': {
@@ -129,7 +129,7 @@ var _SETTINGS = {
     },
     'Versioning': {
         'Version': '1.0.0',
-        'Build': '92',
+        'Build': '97',
 
         'DisplayLog': false,
         'DrawVersion': false,
