@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Break the Brick</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
@@ -9,35 +10,65 @@
     -->
 
     <!--Temporary fix for IOS 9-->
-    <meta name="viewport" content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no, minimal-ui"/>
+    <meta name="viewport"
+        content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no, minimal-ui" />
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <link rel="stylesheet" type="text/css" href="game.css">
+    <script type="text/javascript">
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('sw.js').then(function (registration) {
+                    // Registration was successful
+                    console.log('ServiceWorker registration successful with scope: ', registration
+                        .scope);
+                }, function (err) {
+                    // registration failed :(
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-95PS0JVMX0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-95PS0JVMX0');
+    </script>
+
     <script type="text/javascript" src="game.js"></script>
 
-<!-- AnalyticsCode -->
+    <!-- AnalyticsCode -->
 
-<!-- APICode -->
+    <!-- APICode -->
 </head>
+
 <body onload="setTimeout(function(){window.scrollTo(0,1)},1);">
-<!--body-->
+    <!--body-->
     <div id="ajaxbar">
         <div id="game"><canvas id="canvas"></canvas></div>
 
         <div id="orientate"><img src="media/graphics/orientate/landscape.jpg" /></div>
         <div id="play" class="play" onclick="">
-<!--            <img src="media/graphics/splash/mobile/cover-start.png" />-->
+            <!--            <img src="media/graphics/splash/mobile/cover-start.png" />-->
         </div>
         <!--<img id="scrollDown" width="220" height="277"></img>-->
 
 
     </div>
     <!-- <div id="tempdiv"><br><br><br></div> -->
-<!-- APICode2 -->
+    <!-- APICode2 -->
 
 
-<!-- END OF TEST -->
+    <!-- END OF TEST -->
 
 </body>
+
 </html>

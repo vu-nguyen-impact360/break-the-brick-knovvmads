@@ -8,7 +8,7 @@ if [ ! -f ../www.zip ];
 		rm ../www.zip
 fi
 
-zip -r ./www.zip ./index.html ./game.js ./game.css ./media ./branding
+zip -r ./www.zip ./index.html ./game.js ./game.css ./media ./branding ./sw.js
 
 #git add --all
 #git commit -m "updating"

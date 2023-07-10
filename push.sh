@@ -13,7 +13,7 @@ SCRIPT_VERSION="1.1.2"
 # Configurations
 GIT_BRANCH="master"
 LANGUAGE="en"
-ENABLE_FRAMEBREAKER=true
+ENABLE_FRAMEBREAKER=false
 ENABLE_COPYRIGHT=true
 ENABLE_CACHE_BURST=true
 ENABLE_CLOUDFRONT_INVALIDATION=false
@@ -409,8 +409,8 @@ do
         bake
         prep_production ${LANGUAGE}
         compile_test_game
-        # secure_regular
-        secure_strong
+        secure_regular
+        # secure_strong
         inject_burst_cache_version_tag
       ;;
     n)
